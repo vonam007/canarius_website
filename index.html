@@ -3,277 +3,3282 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Canarius Tech — AI Agents for Business Automation</title>
+    <title>Canarius Tech — Autonomous AI Agents for Enterprise Workflows</title>
     <meta
       name="description"
-      content="Canarius Tech develops AI-powered assistants and autonomous agents for customer support, product discovery, knowledge retrieval, and business workflow automation."
+      content="Canarius Tech builds production-ready autonomous AI agents for customer support, knowledge retrieval (RAG), and mission-critical business workflow automation."
     />
+    <meta name="keywords" content="AI Agents, Enterprise Automation, Autonomous AI, RAG, Customer Support AI, Tool Calling, Canarius Tech" />
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Canarius Tech — Autonomous AI Agents for Enterprise" />
+    <meta property="og:description" content="Move beyond basic chatbots. Deploy intelligent multi-agent systems that reason, connect to APIs, and execute complex workflows." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
     <style>
       :root {
-        --bg: #050816;
-        --surface: #0d1327;
-        --surface-border: #253259;
-        --text: #f5f7ff;
-        --muted: #b5bfd8;
-        --primary: #6ea8ff;
-        --primary-soft: #8fe2ff;
+        --bg-base: #060913;
+        --bg-subtle: #0b1124;
+        --bg-card: rgba(15, 23, 46, 0.7);
+        --bg-card-hover: rgba(22, 33, 66, 0.85);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-color-glow: rgba(99, 102, 241, 0.35);
+        --text-primary: #f8fafc;
+        --text-secondary: #94a3b8;
+        --text-muted: #64748b;
+        --primary: #4f46e5;
+        --primary-light: #6366f1;
+        --accent-cyan: #38bdf8;
+        --accent-emerald: #10b981;
+        --accent-violet: #a855f7;
+        --gradient-primary: linear-gradient(135deg, #6366f1 0%, #38bdf8 50%, #c084fc 100%);
+        --gradient-grant: linear-gradient(135deg, #10b981 0%, #38bdf8 100%);
+        --gradient-text: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+        --shadow-glow: 0 0 40px -10px rgba(99, 102, 241, 0.3);
+        --radius-sm: 8px;
+        --radius-md: 14px;
+        --radius-lg: 22px;
+        --radius-full: 9999px;
+        --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       * {
         box-sizing: border-box;
-      }
-
-      html,
-      body {
         margin: 0;
         padding: 0;
-        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: radial-gradient(circle at 10% 10%, #14224c 0%, var(--bg) 45%, #03050d 100%);
-        color: var(--text);
+      }
+
+      html {
+        scroll-behavior: smooth;
+        color-scheme: dark;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--bg-base);
+        color: var(--text-primary);
         line-height: 1.6;
+        overflow-x: hidden;
+        background-image: 
+          radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+          radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
+          radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+        background-attachment: fixed;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 32px 32px;
+        pointer-events: none;
+        z-index: 0;
       }
 
       .container {
-        width: min(1080px, 92vw);
+        width: min(1200px, 92vw);
         margin: 0 auto;
+        position: relative;
+        z-index: 1;
       }
 
-      .hero {
-        padding: 7rem 0 5rem;
-      }
-
-      h1,
-      h2 {
+      h1, h2, h3, h4 {
         line-height: 1.2;
-        margin: 0;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        color: var(--text-primary);
       }
 
-      h1 {
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        max-width: 16ch;
+      .gradient-text {
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
       }
 
-      h2 {
-        font-size: clamp(1.5rem, 3vw, 2rem);
+      .gradient-grant-text {
+        background: var(--gradient-grant);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
       }
 
       p {
-        margin: 1rem 0 0;
-        color: var(--muted);
-        max-width: 70ch;
+        color: var(--text-secondary);
+        font-size: 1.05rem;
       }
 
-      .hero p {
-        font-size: 1.1rem;
+      a {
+        color: inherit;
+        text-decoration: none;
       }
 
-      .cta-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-        margin-top: 2rem;
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.35rem 0.85rem;
+        border-radius: var(--radius-full);
+        font-size: 0.825rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        border: 1px solid var(--border-color);
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(8px);
+      }
+
+      .badge-glow {
+        border-color: rgba(99, 102, 241, 0.4);
+        background: rgba(99, 102, 241, 0.08);
+        color: #a5b4fc;
+        box-shadow: 0 0 20px -3px rgba(99, 102, 241, 0.3);
+      }
+
+      .badge-grant {
+        border-color: rgba(16, 185, 129, 0.4);
+        background: rgba(16, 185, 129, 0.1);
+        color: #6ee7b7;
+        box-shadow: 0 0 20px -3px rgba(16, 185, 129, 0.3);
+      }
+
+      .badge-glow .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: var(--accent-emerald);
+        box-shadow: 0 0 8px var(--accent-emerald);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.4; transform: scale(0.85); }
       }
 
       .btn {
-        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.4rem;
+        border-radius: var(--radius-full);
+        font-size: 0.95rem;
         font-weight: 600;
-        border-radius: 999px;
-        padding: 0.75rem 1.1rem;
+        cursor: pointer;
+        transition: var(--transition);
         border: 1px solid transparent;
-        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-      }
-
-      .btn.primary {
-        background: linear-gradient(120deg, var(--primary), var(--primary-soft));
-        color: #081229;
-      }
-
-      .btn.secondary {
-        border-color: var(--surface-border);
-        color: var(--text);
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .btn:hover {
-        transform: translateY(-2px);
-      }
-
-      section {
-        padding: 2.25rem 0;
-      }
-
-      .card {
-        background: linear-gradient(160deg, rgba(110, 168, 255, 0.08), rgba(143, 226, 255, 0.02));
-        border: 1px solid var(--surface-border);
-        border-radius: 16px;
-        padding: 1.25rem;
-      }
-
-      .grid {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .grid.two {
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      }
-
-      .chip-list {
-        list-style: none;
-        margin: 1rem 0 0;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.6rem;
-      }
-
-      .chip-list li {
-        border: 1px solid var(--surface-border);
-        border-radius: 999px;
-        padding: 0.4rem 0.8rem;
-        color: var(--muted);
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .flow {
-        margin-top: 1rem;
-        padding: 1rem;
-        border-radius: 12px;
-        border: 1px dashed var(--surface-border);
-        color: var(--text);
-        background: rgba(255, 255, 255, 0.02);
-        font-weight: 600;
-        overflow-x: auto;
         white-space: nowrap;
       }
 
-      footer {
-        padding: 3rem 0 4rem;
+      .btn-primary {
+        background: linear-gradient(135deg, #4f46e5 0%, #38bdf8 100%);
+        color: #ffffff;
+        box-shadow: 0 4px 20px -2px rgba(79, 70, 229, 0.45);
       }
 
-      .contact-links a {
-        color: var(--primary-soft);
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px -2px rgba(79, 70, 229, 0.6);
+        filter: brightness(1.1);
       }
 
-      .company-name {
-        display: inline-block;
-        margin-bottom: 0.65rem;
-        font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+      .btn-grant {
+        background: linear-gradient(135deg, #10b981 0%, #0284c7 100%);
+        color: #ffffff;
+        box-shadow: 0 4px 20px -2px rgba(16, 185, 129, 0.45);
+      }
+
+      .btn-grant:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px -2px rgba(16, 185, 129, 0.6);
+        filter: brightness(1.1);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: var(--border-color);
+        color: var(--text-primary);
+        backdrop-filter: blur(12px);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .btn-sm {
+        padding: 0.45rem 0.95rem;
+        font-size: 0.85rem;
+      }
+
+      section {
+        padding: 5.5rem 0;
+        position: relative;
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 680px;
+        margin: 0 auto 3.5rem;
+      }
+
+      .section-header .badge {
+        margin-bottom: 1rem;
+      }
+
+      .section-header h2 {
+        font-size: clamp(2rem, 3.8vw, 2.75rem);
+        margin-bottom: 1rem;
+      }
+
+      .section-header p {
+        font-size: 1.1rem;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 1rem 0;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(6, 9, 19, 0.75);
+        border-bottom: 1px solid var(--border-color);
+        transition: var(--transition);
+      }
+
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
         font-weight: 800;
+        font-size: 1.3rem;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+      }
+
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
+      }
+
+      .brand-icon svg {
+        width: 20px;
+        height: 20px;
+        fill: white;
+      }
+
+      .brand-tag {
+        font-size: 0.65rem;
+        padding: 0.15rem 0.45rem;
+        border-radius: 4px;
+        background: rgba(99, 102, 241, 0.2);
+        color: #818cf8;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.75rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--text-secondary);
+        font-size: 0.925rem;
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover {
+        color: #ffffff;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .lang-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-color);
+        color: var(--text-primary);
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.45rem 0.75rem;
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        transition: var(--transition);
+      }
+
+      .lang-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .mobile-toggle {
+        display: none;
+        background: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 0.5rem;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 6.5rem 0 4.5rem;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 860px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+        margin: 1.5rem 0 1.25rem;
+        line-height: 1.15;
+      }
+
+      .hero p {
+        font-size: clamp(1.1rem, 2vw, 1.35rem);
+        max-width: 680px;
+        margin: 0 auto 2.25rem;
+        color: var(--text-secondary);
+      }
+
+      .hero-cta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 3.5rem;
+      }
+
+      .trust-strip {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .trust-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        font-weight: 600;
+        margin-bottom: 1.25rem;
+      }
+
+      .trust-logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+        opacity: 0.65;
+      }
+
+      .trust-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-secondary);
         letter-spacing: 0.02em;
-        color: var(--primary-soft);
+        transition: var(--transition);
       }
 
-      .fade-in {
+      .trust-logo:hover {
+        opacity: 1;
+        color: #ffffff;
+      }
+
+      /* Hero Interactive Visual / Mockup */
+      .hero-visual {
+        margin-top: 3.5rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), var(--shadow-glow);
+        backdrop-filter: blur(16px);
+        overflow: hidden;
+        text-align: left;
+      }
+
+      .mockup-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.85rem 1.25rem;
+        background: rgba(0, 0, 0, 0.4);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .window-dots {
+        display: flex;
+        gap: 6px;
+      }
+
+      .window-dots span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #334155;
+      }
+
+      .window-dots span:nth-child(1) { background: #ef4444; }
+      .window-dots span:nth-child(2) { background: #eab308; }
+      .window-dots span:nth-child(3) { background: #22c55e; }
+
+      .mockup-title {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .mockup-body {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        min-height: 380px;
+      }
+
+      .mockup-sidebar {
+        border-right: 1px solid var(--border-color);
+        background: rgba(0, 0, 0, 0.2);
+        padding: 1.25rem;
+      }
+
+      .sidebar-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--text-muted);
+        letter-spacing: 0.05em;
+        margin-bottom: 0.85rem;
+      }
+
+      .agent-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.7rem 0.85rem;
+        border-radius: var(--radius-sm);
+        margin-bottom: 0.4rem;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .agent-item.active {
+        background: rgba(99, 102, 241, 0.15);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        color: #ffffff;
+      }
+
+      .agent-item:not(.active):hover {
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .mockup-main {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .trace-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .trace-step {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.875rem;
+        animation: fadeIn 0.4s ease forwards;
+      }
+
+      .step-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(99, 102, 241, 0.2);
+        border: 1px solid rgba(99, 102, 241, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 0.9rem;
+      }
+
+      .step-icon.success {
+        background: rgba(16, 185, 129, 0.2);
+        border-color: rgba(16, 185, 129, 0.4);
+      }
+
+      .step-content {
+        flex: 1;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--border-color);
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius-sm);
+      }
+
+      .step-title {
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.25rem;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .step-meta {
+        font-size: 0.75rem;
+        color: var(--accent-cyan);
+        font-family: monospace;
+      }
+
+      .step-desc {
+        color: var(--text-secondary);
+        font-size: 0.825rem;
+      }
+
+      .sim-controls {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      /* Stats Section */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+
+      .stat-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 2rem 1.5rem;
+        text-align: center;
+        transition: var(--transition);
+        backdrop-filter: blur(12px);
+      }
+
+      .stat-card:hover {
+        border-color: var(--border-color-glow);
+        transform: translateY(-4px);
+      }
+
+      .stat-number {
+        font-size: clamp(2.2rem, 3.5vw, 3rem);
+        font-weight: 800;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+      }
+
+      /* Bento Grid Solutions */
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1.5rem;
+      }
+
+      .bento-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 2rem;
+        transition: var(--transition);
+        backdrop-filter: blur(12px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .bento-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.08), transparent 70%);
+        pointer-events: none;
+      }
+
+      .bento-card:hover {
+        border-color: var(--border-color-glow);
+        background: var(--bg-card-hover);
+        transform: translateY(-4px);
+        box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+      }
+
+      .col-8 { grid-column: span 8; }
+      .col-4 { grid-column: span 4; }
+
+      .card-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-sm);
+        background: rgba(99, 102, 241, 0.15);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        color: #818cf8;
+      }
+
+      .bento-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .bento-card p {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .feature-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .feature-tag {
+        font-size: 0.78rem;
+        padding: 0.3rem 0.65rem;
+        border-radius: var(--radius-full);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--border-color);
+        color: var(--text-secondary);
+      }
+
+      /* Architecture */
+      .arch-flow {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.2rem;
+        position: relative;
+      }
+
+      .arch-step {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 1.75rem 1.25rem;
+        text-align: center;
+        position: relative;
+        transition: var(--transition);
+      }
+
+      .arch-step:hover {
+        border-color: var(--border-color-glow);
+        transform: translateY(-4px);
+      }
+
+      .step-num {
+        font-size: 0.75rem;
+        font-weight: 800;
+        color: #818cf8;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+      }
+
+      .arch-step h4 {
+        font-size: 1.05rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .arch-step p {
+        font-size: 0.85rem;
+      }
+
+      /* Technology */
+      .tech-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .tech-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 2.25rem;
+        backdrop-filter: blur(12px);
+      }
+
+      .tech-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .pill-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 1.5rem;
+      }
+
+      .tech-pill {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.45rem 0.9rem;
+        border-radius: var(--radius-full);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-color);
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+
+      .tech-pill svg {
+        width: 14px;
+        height: 14px;
+        color: var(--accent-cyan);
+      }
+
+      /* ROI Calculator */
+      .roi-box {
+        background: linear-gradient(145deg, rgba(15, 23, 46, 0.9), rgba(10, 15, 30, 0.95));
+        border: 1px solid var(--border-color-glow);
+        border-radius: var(--radius-lg);
+        padding: 3rem;
+        box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7);
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .calc-inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+      }
+
+      .slider-group label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      .slider-val {
+        color: var(--accent-cyan);
+        font-family: monospace;
+        font-size: 1.1rem;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        accent-color: #6366f1;
+        cursor: pointer;
+      }
+
+      .calc-results {
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .result-number {
+        font-size: 2.8rem;
+        font-weight: 800;
+        color: var(--accent-emerald);
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Pricing */
+      .billing-toggle-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.85rem;
+        margin-bottom: 3rem;
+      }
+
+      .toggle-label {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        cursor: pointer;
+      }
+
+      .toggle-label.active {
+        color: #ffffff;
+      }
+
+      .toggle-switch {
+        position: relative;
+        width: 52px;
+        height: 28px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 1px solid var(--border-color);
+      }
+
+      .toggle-switch.annual {
+        background: #4f46e5;
+      }
+
+      .toggle-handle {
+        position: absolute;
+        top: 3px;
+        left: 4px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: white;
+        transition: var(--transition);
+      }
+
+      .toggle-switch.annual .toggle-handle {
+        transform: translateX(24px);
+      }
+
+      .discount-pill {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.55rem;
+        border-radius: var(--radius-full);
+        background: rgba(16, 185, 129, 0.2);
+        color: #34d399;
+        font-weight: 700;
+        border: 1px solid rgba(16, 185, 129, 0.4);
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        align-items: stretch;
+      }
+
+      .pricing-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 2.5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: var(--transition);
+        backdrop-filter: blur(12px);
+        position: relative;
+      }
+
+      .pricing-card.featured {
+        border-color: rgba(99, 102, 241, 0.6);
+        background: rgba(20, 29, 60, 0.85);
+        box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.4);
+        transform: scale(1.03);
+      }
+
+      .pricing-card.featured .popular-tag {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--gradient-primary);
+        color: white;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.25rem 0.85rem;
+        border-radius: var(--radius-full);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .price-header h3 {
+        font-size: 1.35rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .price-amount {
+        font-size: 2.75rem;
+        font-weight: 800;
+        margin: 1.25rem 0 0.5rem;
+        color: #ffffff;
+      }
+
+      .price-amount span {
+        font-size: 1rem;
+        color: var(--text-muted);
+        font-weight: 400;
+      }
+
+      .feature-list {
+        list-style: none;
+        margin: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+
+      .feature-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-size: 0.92rem;
+        color: var(--text-secondary);
+      }
+
+      .feature-list li svg {
+        color: var(--accent-emerald);
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+
+      /* STARTUP GRANT SECTION STYLING */
+      .grant-card-wrapper {
+        background: linear-gradient(145deg, rgba(16, 24, 48, 0.95), rgba(8, 14, 30, 0.98));
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        box-shadow: 0 0 50px -15px rgba(16, 185, 129, 0.25);
+        border-radius: var(--radius-lg);
+        padding: 3.5rem 3rem;
+        backdrop-filter: blur(16px);
+      }
+
+      .grant-header {
+        text-align: center;
+        max-width: 780px;
+        margin: 0 auto 3rem;
+      }
+
+      .grant-header h2 {
+        font-size: clamp(2rem, 3.8vw, 2.85rem);
+        margin: 1rem 0;
+      }
+
+      .grant-columns {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .grant-perks {
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 2rem;
+      }
+
+      .grant-perk-item {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .grant-perk-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .perk-badge {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(16, 185, 129, 0.15);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+
+      .perk-text h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+        color: #ffffff;
+      }
+
+      .perk-text p {
+        font-size: 0.9rem;
+      }
+
+      .criteria-box {
+        background: rgba(16, 185, 129, 0.05);
+        border: 1px dashed rgba(16, 185, 129, 0.4);
+        border-radius: var(--radius-md);
+        padding: 2rem;
+      }
+
+      .criteria-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #34d399;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .criteria-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .criteria-list li {
+        display: flex;
+        gap: 0.75rem;
+        font-size: 0.92rem;
+        color: var(--text-primary);
+        line-height: 1.4;
+      }
+
+      .criteria-step {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #10b981;
+        color: #060913;
+        font-weight: 800;
+        font-size: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .grant-cta-row {
+        margin-top: 2.5rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      /* Testimonials */
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.75rem;
+      }
+
+      .testimonial-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .testimonial-quote {
+        font-size: 1rem;
+        color: var(--text-primary);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+      }
+
+      .author-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--gradient-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: white;
+      }
+
+      .author-info h4 {
+        font-size: 0.95rem;
+      }
+
+      .author-info p {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      /* FAQ Accordion */
+      .faq-list {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .faq-item {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        transition: var(--transition);
+      }
+
+      .faq-question {
+        padding: 1.25rem 1.5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        font-size: 1.05rem;
+      }
+
+      .faq-icon {
+        transition: transform 0.25s ease;
+      }
+
+      .faq-item.active .faq-icon {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        padding: 0 1.5rem;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+      }
+
+      .faq-item.active .faq-answer {
+        padding-bottom: 1.25rem;
+        max-height: 350px;
+      }
+
+      /* CTA Banner */
+      .cta-banner {
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.25) 0%, rgba(56, 189, 248, 0.15) 100%);
+        border: 1px solid var(--border-color-glow);
+        border-radius: var(--radius-lg);
+        padding: 4.5rem 2.5rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-banner h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 1rem;
+      }
+
+      .cta-banner p {
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        font-size: 1.15rem;
+      }
+
+      /* Footer */
+      footer {
+        padding: 5rem 0 3rem;
+        border-top: 1px solid var(--border-color);
+        background: rgba(3, 5, 12, 0.8);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 4rem;
+      }
+
+      .footer-brand p {
+        font-size: 0.9rem;
+        margin: 1rem 0 1.5rem;
+        max-width: 320px;
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.78rem;
+        padding: 0.3rem 0.65rem;
+        border-radius: var(--radius-full);
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        color: var(--accent-emerald);
+      }
+
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent-emerald);
+      }
+
+      .footer-col h4 {
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.25rem;
+        color: var(--text-primary);
+      }
+
+      .footer-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .footer-col a {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        transition: var(--transition);
+      }
+
+      .footer-col a:hover {
+        color: #ffffff;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      /* Modal */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
         opacity: 0;
-        transform: translateY(14px);
-        animation: fadeInUp 0.6s ease forwards;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+        padding: 1rem;
+        overflow-y: auto;
       }
 
-      .fade-in:nth-child(2) {
-        animation-delay: 0.08s;
+      .modal-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
       }
 
-      .fade-in:nth-child(3) {
-        animation-delay: 0.16s;
+      .modal-box {
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-color-glow);
+        border-radius: var(--radius-lg);
+        width: min(580px, 94vw);
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 2.5rem;
+        position: relative;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
       }
 
-      @keyframes fadeInUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
+      .modal-box.grant-theme {
+        border-color: rgba(16, 185, 129, 0.5);
+        box-shadow: 0 0 50px -10px rgba(16, 185, 129, 0.3);
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 1.25rem;
+        right: 1.25rem;
+        background: none;
+        border: none;
+        color: var(--text-muted);
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      .modal-close:hover {
+        color: white;
+      }
+
+      .form-group {
+        margin-bottom: 1.15rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        color: white;
+        font-family: inherit;
+        font-size: 0.95rem;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+      }
+
+      .modal-box.grant-theme .form-control:focus {
+        border-color: #10b981;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+      }
+
+      .approval-tip-box {
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: var(--radius-sm);
+        padding: 0.75rem 1rem;
+        margin-bottom: 1.25rem;
+        font-size: 0.825rem;
+        color: #a7f3d0;
+      }
+
+      /* Responsive Media Queries */
+      @media (max-width: 992px) {
+        .col-8, .col-4 { grid-column: span 12; }
+        .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        .arch-flow { grid-template-columns: 1fr; }
+        .pricing-grid { grid-template-columns: 1fr; }
+        .pricing-card.featured { transform: none; }
+        .grant-columns { grid-template-columns: 1fr; }
+        .tech-grid { grid-template-columns: 1fr; }
+        .roi-box { grid-template-columns: 1fr; gap: 2rem; }
+        .testimonials-grid { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+        .mockup-body { grid-template-columns: 1fr; }
+        .mockup-sidebar { display: none; }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .nav-links.mobile-open {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--bg-subtle);
+          border-bottom: 1px solid var(--border-color);
+          padding: 1.5rem;
+          gap: 1.25rem;
         }
+        .mobile-toggle { display: block; }
+        .stats-grid { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr; }
+        .hero { padding: 4rem 0 3rem; }
+        .form-row { grid-template-columns: 1fr; }
+        .grant-card-wrapper { padding: 2rem 1.5rem; }
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
       }
     </style>
   </head>
   <body>
+    <!-- Top Sticky Navigation -->
+    <header class="navbar" id="navbar">
+      <div class="container nav-container">
+        <a href="#" class="brand">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <span>Canarius<span style="color: #6366f1">.tech</span></span>
+          <span class="brand-tag">Enterprise AI</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#solutions" data-i18n="nav_solutions">Solutions</a></li>
+          <li><a href="#architecture" data-i18n="nav_architecture">Architecture</a></li>
+          <li><a href="#technology" data-i18n="nav_technology">Technology</a></li>
+          <li><a href="#roi" data-i18n="nav_roi">ROI Calculator</a></li>
+          <li><a href="#pricing" data-i18n="nav_pricing">Pricing</a></li>
+          <li><a href="#startup-grant" data-i18n="nav_grant"><span style="color: #34d399">✦</span> Startup Offer</a></li>
+          <li><a href="#about" data-i18n="nav_about">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="lang-btn" id="langToggle" title="Switch Language">
+            <span id="langFlag">🇻🇳</span> <span id="langText">VI</span>
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="openDemoModal()" data-i18n="btn_book_demo">
+            Book a Demo
+          </button>
+          <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
     <main>
-      <section class="hero">
+      <!-- Hero Section -->
+      <section class="hero" id="hero">
         <div class="container">
-          <h1 class="fade-in">AI Agents Built for Real Business Workflows</h1>
-          <p class="fade-in">
-            Canarius Tech helps businesses automate customer support, product discovery, and
-            operational workflows with reliable AI-powered assistants.
-          </p>
-          <div class="cta-row fade-in">
-            <a class="btn primary" href="#technology">Explore Our Technology</a>
-            <a class="btn secondary" href="#contact">Contact Us</a>
+          <div class="hero-content">
+            <div class="badge badge-glow">
+              <span class="dot"></span>
+              <span data-i18n="hero_badge">Canarius Agent Orchestration 2.4 is Live</span>
+            </div>
+            
+            <h1>
+              <span data-i18n="hero_h1_1">Autonomous AI Agents</span><br />
+              <span class="gradient-text" data-i18n="hero_h1_2">Built for Real Enterprise Workflows</span>
+            </h1>
+
+            <p data-i18n="hero_sub">
+              Move beyond basic chatbots. Canarius deploys enterprise-ready AI agents that reason through multi-step logic, tap company knowledge vaults, call internal APIs, and execute high-impact tasks with 99.9% reliability.
+            </p>
+
+            <div class="hero-cta">
+              <button class="btn btn-primary" onclick="openDemoModal()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span data-i18n="hero_cta_primary">Schedule Enterprise Demo</span>
+              </button>
+              <a href="#startup-grant" class="btn btn-grant">
+                <span>🎁</span>
+                <span data-i18n="hero_cta_grant">Claim 100% Free Startup Grant</span>
+              </a>
+              <a href="#demo-preview" class="btn btn-secondary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span data-i18n="hero_cta_secondary">Watch Live Agent Trace</span>
+              </a>
+            </div>
+
+            <!-- Trust Bar -->
+            <div class="trust-strip">
+              <div class="trust-label" data-i18n="trust_label">ENGINEERED FOR SCALING ENTERPRISES &amp; MISSION-CRITICAL TEAMS</div>
+              <div class="trust-logos">
+                <div class="trust-logo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                  FinScale Capital
+                </div>
+                <div class="trust-logo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  CloudVertex
+                </div>
+                <div class="trust-logo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 8 22 9 17 14 18 21 12 18 6 21 7 14 2 9 9 8 12 2"/></svg>
+                  NovaHealth Systems
+                </div>
+                <div class="trust-logo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>
+                  LogiChain Global
+                </div>
+                <div class="trust-logo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
+                  DataSphere AI
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Interactive App Preview -->
+            <div class="hero-visual" id="demo-preview">
+              <div class="mockup-header">
+                <div class="window-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="mockup-title">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="4 17 10 11 4 5"></polyline>
+                    <line x1="12" y1="19" x2="20" y2="19"></line>
+                  </svg>
+                  <span>Canarius Agent Runtime — Live Execution Inspector</span>
+                </div>
+                <div class="badge" style="font-size: 0.72rem; padding: 0.15rem 0.5rem; background: rgba(16,185,129,0.15); color: #34d399; border-color: rgba(16,185,129,0.3)">
+                  ● Running v2.4.1
+                </div>
+              </div>
+
+              <div class="mockup-body">
+                <div class="mockup-sidebar">
+                  <div class="sidebar-label" data-i18n="sim_sidebar_label">Select Agent Scenario</div>
+                  <div class="agent-item active" onclick="switchScenario(0)">
+                    <span id="scenTab0">🛡️ Customer Support &amp; Refund</span>
+                  </div>
+                  <div class="agent-item" onclick="switchScenario(1)">
+                    <span id="scenTab1">📦 Logistics &amp; ERP Sync</span>
+                  </div>
+                  <div class="agent-item" onclick="switchScenario(2)">
+                    <span id="scenTab2">📄 Legal Contract Compliance</span>
+                  </div>
+                </div>
+
+                <div class="mockup-main">
+                  <div class="trace-timeline" id="traceContainer">
+                    <!-- Loaded dynamically via JS -->
+                  </div>
+
+                  <div class="sim-controls">
+                    <span style="font-size: 0.8rem; color: var(--text-muted)" data-i18n="sim_controls_hint">
+                      Simulating autonomous tool calling &amp; guardrails check
+                    </span>
+                    <button class="btn btn-secondary btn-sm" id="replayBtn" onclick="runSimulation()">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                      </svg>
+                      <span data-i18n="sim_replay_btn">Re-run Simulation</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="what-we-build">
-        <div class="container card">
-          <h2>What We Build</h2>
-          <p>
-            Canarius Tech develops intelligent assistants that understand user requests, access
-            business data, reason about tasks, recommend next actions, and interact with external
-            systems to complete useful work.
-          </p>
-        </div>
-      </section>
-
-      <section id="use-cases">
+      <!-- Key Metrics / Stats Section -->
+      <section id="stats">
         <div class="container">
-          <h2>Use Cases</h2>
-          <div class="grid two" style="margin-top: 1rem">
-            <div class="card">24/7 customer support</div>
-            <div class="card">Product discovery and recommendations</div>
-            <div class="card">Knowledge assistants</div>
-            <div class="card">Order and service workflows</div>
-            <div class="card">Internal business automation</div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">10x</div>
+              <div class="stat-label" data-i18n="stat_1">Faster Case &amp; Ticket Resolution</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">99.4%</div>
+              <div class="stat-label" data-i18n="stat_2">Execution Accuracy with Guardrails</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">65%</div>
+              <div class="stat-label" data-i18n="stat_3">Reduction in Operational Service Costs</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">24/7</div>
+              <div class="stat-label" data-i18n="stat_4">Autonomous Continuous Execution</div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="how-it-works">
-        <div class="container card">
-          <h2>How It Works</h2>
-          <div class="flow">
-            Customer Request → AI Agent → Business Knowledge → Tools &amp; APIs → Action or Response
+      <!-- Solutions / What We Build (Bento Grid) -->
+      <section id="solutions">
+        <div class="container">
+          <div class="section-header">
+            <div class="badge" data-i18n="badge_solutions">Enterprise Solutions</div>
+            <h2 data-i18n="solutions_h2">What Canarius Agents Execute</h2>
+            <p data-i18n="solutions_p">
+              We design specialized multi-agent architectures that don't just generate text—they interact with your real software stack, execute validated actions, and deliver verified business outcomes.
+            </p>
+          </div>
+
+          <div class="bento-grid">
+            <div class="bento-card col-8">
+              <div>
+                <div class="card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                </div>
+                <h3 data-i18n="card1_title">Omnichannel 24/7 Customer Support</h3>
+                <p data-i18n="card1_desc">
+                  Handle tier-1 and tier-2 customer support inquiries across Email, Slack, WhatsApp, and Web with contextual memory. Agents accurately interpret return policies, trigger partial refunds, modify order items, and seamlessly escalate edge cases to human reps.
+                </p>
+              </div>
+              <div class="feature-tags">
+                <span class="feature-tag">Zendesk / Freshdesk API</span>
+                <span class="feature-tag">Sentiment Analysis</span>
+                <span class="feature-tag">Instant Multi-lingual Support</span>
+                <span class="feature-tag">Human Escalation Protocol</span>
+              </div>
+            </div>
+
+            <div class="bento-card col-4">
+              <div>
+                <div class="card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </div>
+                <h3 data-i18n="card2_title">Enterprise Knowledge (RAG)</h3>
+                <p data-i18n="card2_desc">
+                  Connect scattered enterprise documentation across Notion, Google Drive, Jira, and PostgreSQL. Strict citation models ensure answers cite exact clauses without hallucinations.
+                </p>
+              </div>
+              <div class="feature-tags">
+                <span class="feature-tag">Hybrid Vector Search</span>
+                <span class="feature-tag">Deterministic Citations</span>
+                <span class="feature-tag">Zero Model Training on Data</span>
+              </div>
+            </div>
+
+            <div class="bento-card col-4">
+              <div>
+                <div class="card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </div>
+                <h3 data-i18n="card3_title">Automated Tool &amp; API Calling</h3>
+                <p data-i18n="card3_desc">
+                  Our agents don't stop at conversation. They trigger authenticated REST/GraphQL endpoints, execute SQL queries against read-replicas, and run validated scripts.
+                </p>
+              </div>
+              <div class="feature-tags">
+                <span class="feature-tag">Strict Schema Validation</span>
+                <span class="feature-tag">Rate Limiting Guardrails</span>
+                <span class="feature-tag">OAuth2 &amp; Mutual TLS</span>
+              </div>
+            </div>
+
+            <div class="bento-card col-4">
+              <div>
+                <div class="card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                </div>
+                <h3 data-i18n="card4_title">Order &amp; Service Workflows</h3>
+                <p data-i18n="card4_desc">
+                  Automate supply chain queries, warranty claims, invoice discrepancies, and logistics status tracking across Shopify, SAP, and custom ERP systems.
+                </p>
+              </div>
+              <div class="feature-tags">
+                <span class="feature-tag">ERP / CRM Sync</span>
+                <span class="feature-tag">Invoice Extraction</span>
+                <span class="feature-tag">Automated Reconciliation</span>
+              </div>
+            </div>
+
+            <div class="bento-card col-4">
+              <div>
+                <div class="card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <h3 data-i18n="card5_title">Multi-Agent Swarm Orchestration</h3>
+                <p data-i18n="card5_desc">
+                  Break complex corporate initiatives into specialized subagents: Planner, Researcher, Coder, and Verifier collaborating to execute multi-hour enterprise workflows.
+                </p>
+              </div>
+              <div class="feature-tags">
+                <span class="feature-tag">Hierarchical Planning</span>
+                <span class="feature-tag">Consensus Checking</span>
+                <span class="feature-tag">Audit Trail Logs</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- Architecture & How It Works -->
+      <section id="architecture">
+        <div class="container">
+          <div class="section-header">
+            <div class="badge" data-i18n="badge_arch">Under the Hood</div>
+            <h2 data-i18n="arch_h2">How Canarius Agents Execute Work</h2>
+            <p data-i18n="arch_p">
+              A 5-layer deterministic pipeline engineered for enterprise safety, observability, and sub-second reasoning latency.
+            </p>
+          </div>
+
+          <div class="arch-flow">
+            <div class="arch-step">
+              <div class="step-num">STAGE 01</div>
+              <h4 data-i18n="stage1_title">Ingestion &amp; Intent</h4>
+              <p data-i18n="stage1_desc">Natural language incoming request is sanitized, classified, and mapped to business intent schemas.</p>
+            </div>
+
+            <div class="arch-step">
+              <div class="step-num">STAGE 02</div>
+              <h4 data-i18n="stage2_title">Vector Retrieval</h4>
+              <p data-i18n="stage2_desc">Hybrid dense/sparse search pulls relevant enterprise policies and real-time database state.</p>
+            </div>
+
+            <div class="arch-step">
+              <div class="step-num">STAGE 03</div>
+              <h4 data-i18n="stage3_title">Agent Reasoning</h4>
+              <p data-i18n="stage3_desc">Multi-step planner plans necessary actions, evaluating edge cases and security guardrails.</p>
+            </div>
+
+            <div class="arch-step">
+              <div class="step-num">STAGE 04</div>
+              <h4 data-i18n="stage4_title">Authenticated Tool Call</h4>
+              <p data-i18n="stage4_desc">The agent triggers external APIs (Stripe, CRM, ERP) with structured JSON schemas and auth tokens.</p>
+            </div>
+
+            <div class="arch-step">
+              <div class="step-num">STAGE 05</div>
+              <h4 data-i18n="stage5_title">Audit &amp; Response</h4>
+              <p data-i18n="stage5_desc">Action outcome is validated against policy bounds, logged in telemetry, and summarized to user.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technology & Enterprise Security -->
       <section id="technology">
         <div class="container">
-          <h2>Technology</h2>
-          <ul class="chip-list">
-            <li>Large language models</li>
-            <li>Claude</li>
-            <li>Retrieval-Augmented Generation</li>
-            <li>Tool calling</li>
-            <li>APIs</li>
-            <li>Structured outputs</li>
-            <li>Evaluation and monitoring</li>
-          </ul>
-          <p>
-            We prioritize reliability, safety, cost efficiency, scalable architecture, retrieval
-            quality, robust tool use, and production deployment.
-          </p>
+          <div class="section-header">
+            <div class="badge" data-i18n="badge_tech">Enterprise Ready</div>
+            <h2 data-i18n="tech_h2">Built with Modern AI Standards &amp; Hardened Security</h2>
+            <p data-i18n="tech_p">
+              We leverage best-in-class foundation models alongside private VPC isolation and deterministic governance.
+            </p>
+          </div>
+
+          <div class="tech-grid">
+            <div class="tech-card">
+              <h3 data-i18n="tech_models_title">Foundation Model Agnostic</h3>
+              <p data-i18n="tech_models_desc">
+                Deploy the right model for the right task. Canarius seamlessly orchestrates proprietary frontier models alongside open-weight LLMs hosted in your own VPC.
+              </p>
+              <div class="pill-cloud">
+                <span class="tech-pill">Claude 3.7 Sonnet</span>
+                <span class="tech-pill">GPT-4o &amp; GPT-4.5</span>
+                <span class="tech-pill">DeepSeek-R1 Reasoning</span>
+                <span class="tech-pill">Llama 3.3 70B (Private VPC)</span>
+                <span class="tech-pill">Qdrant &amp; pgvector RAG</span>
+                <span class="tech-pill">Python &amp; TypeScript SDKs</span>
+              </div>
+            </div>
+
+            <div class="tech-card">
+              <h3 data-i18n="tech_sec_title">Enterprise Governance &amp; Compliance</h3>
+              <p data-i18n="tech_sec_desc">
+                Never compromise corporate IP or customer data. We implement zero-data retention agreements with model providers, complete SOC2 alignment, and strict RBAC.
+              </p>
+              <div class="pill-cloud">
+                <span class="tech-pill">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                  SOC2 Type II Aligned
+                </span>
+                <span class="tech-pill">Zero Data Retention (ZDR)</span>
+                <span class="tech-pill">SAML / Okta / Azure AD SSO</span>
+                <span class="tech-pill">Role-Based Access Control (RBAC)</span>
+                <span class="tech-pill">Automated PII Masking</span>
+                <span class="tech-pill">On-Premises / VPC Deployment</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
+      <!-- ROI Calculator -->
+      <section id="roi">
+        <div class="container">
+          <div class="section-header">
+            <div class="badge" data-i18n="badge_roi">Value Estimator</div>
+            <h2 data-i18n="roi_h2">Calculate Your Operational ROI</h2>
+            <p data-i18n="roi_p">
+              See how much time and budget autonomous Canarius agents can save your organization each month.
+            </p>
+          </div>
+
+          <div class="roi-box">
+            <div class="calc-inputs">
+              <div class="slider-group">
+                <label>
+                  <span data-i18n="roi_slider1_lbl">Monthly Support Tickets / Manual Tasks:</span>
+                  <span class="slider-val" id="ticketsDisplay">15,000</span>
+                </label>
+                <input type="range" id="ticketsSlider" min="2000" max="100000" step="1000" value="15000" />
+              </div>
+
+              <div class="slider-group">
+                <label>
+                  <span data-i18n="roi_slider2_lbl">Current Cost Per Manual Resolution:</span>
+                  <span class="slider-val" id="costDisplay">$14</span>
+                </label>
+                <input type="range" id="costSlider" min="5" max="40" step="1" value="14" />
+              </div>
+
+              <p style="font-size: 0.85rem; color: var(--text-muted)">
+                *Calculated based on 70% autonomous first-contact resolution with 10x reduced marginal computation costs.
+              </p>
+            </div>
+
+            <div class="calc-results">
+              <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.5rem;" data-i18n="roi_res_lbl">
+                Estimated Monthly Savings
+              </div>
+              <div class="result-number" id="savingsDisplay">$147,000</div>
+              <p style="font-size: 0.9rem; color: #a5b4fc; margin-bottom: 1.5rem;" id="hoursDisplay">
+                ~1,850 staff hours saved per month
+              </p>
+              <button class="btn btn-primary btn-sm" onclick="openDemoModal()" style="width: 100%" data-i18n="roi_btn">
+                Request Tailored Financial Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Transparent Enterprise Pricing -->
+      <section id="pricing">
+        <div class="container">
+          <div class="section-header">
+            <div class="badge" data-i18n="badge_pricing">Pricing &amp; Plans</div>
+            <h2 data-i18n="pricing_h2">Transparent, Scalable Investment</h2>
+            <p data-i18n="pricing_p">Start with a focused pilot or roll out enterprise-wide agent orchestration.</p>
+          </div>
+
+          <!-- Billing Period Switch -->
+          <div class="billing-toggle-container">
+            <span class="toggle-label active" id="labelMonthly" onclick="setBilling(false)" data-i18n="billing_monthly">Monthly Billing</span>
+            <div class="toggle-switch" id="billingToggle" onclick="toggleBilling()">
+              <div class="toggle-handle"></div>
+            </div>
+            <span class="toggle-label" id="labelAnnual" onclick="setBilling(true)">
+              <span data-i18n="billing_annual">Annual Billing</span>
+              <span class="discount-pill" data-i18n="discount_tag">Save 20%</span>
+            </span>
+          </div>
+
+          <div class="pricing-grid">
+            <div class="pricing-card">
+              <div>
+                <div class="price-header">
+                  <h3 data-i18n="plan1_title">Starter Pilot</h3>
+                  <p data-i18n="plan1_desc">For teams validating autonomous AI in one department.</p>
+                </div>
+                <div class="price-amount" id="priceStarter">$890 <span>/ mo</span></div>
+                <ul class="feature-list">
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    Up to 3 Autonomous Agents
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    10,000 Task Executions / mo
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    Standard RAG (Notion / Slack)
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    Email &amp; Discord Support
+                  </li>
+                </ul>
+              </div>
+              <button class="btn btn-secondary" onclick="openDemoModal()" data-i18n="plan1_btn">Launch Pilot</button>
+            </div>
+
+            <div class="pricing-card featured">
+              <span class="popular-tag" data-i18n="plan2_badge">Most Popular</span>
+              <div>
+                <div class="price-header">
+                  <h3 data-i18n="plan2_title">Growth Orchestrator</h3>
+                  <p data-i18n="plan2_desc">For high-growth businesses scaling multi-channel ops.</p>
+                </div>
+                <div class="price-amount" id="priceGrowth">$2,490 <span>/ mo</span></div>
+                <ul class="feature-list">
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    Up to 10 Autonomous Agents
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    60,000 Task Executions / mo
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    Custom Tool &amp; CRM/ERP Integrations
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    Real-time Human Handoff Portal
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    Dedicated Solutions Engineer
+                  </li>
+                </ul>
+              </div>
+              <button class="btn btn-primary" onclick="openDemoModal()" data-i18n="plan2_btn">Get Started</button>
+            </div>
+
+            <div class="pricing-card">
+              <div>
+                <div class="price-header">
+                  <h3 data-i18n="plan3_title">Enterprise Custom</h3>
+                  <p data-i18n="plan3_desc">For large companies requiring strict security &amp; private VPC.</p>
+                </div>
+                <div class="price-amount" style="font-size: 2.2rem">Custom <span>SLA</span></div>
+                <ul class="feature-list">
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    Unlimited Agents &amp; Workflows
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    Private VPC / On-Premise Deployment
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    Fine-tuned Domain Models
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    99.95% Guaranteed Uptime SLA
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    Custom Security Audit &amp; BAA
+                  </li>
+                </ul>
+              </div>
+              <button class="btn btn-secondary" onclick="openDemoModal()" data-i18n="plan3_btn">Talk to Enterprise Team</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STARTUP GRANT & NEW BUSINESS PROMOTION SECTION -->
+      <section id="startup-grant" class="grant-section">
+        <div class="container">
+          <div class="grant-card-wrapper">
+            <div class="grant-header">
+              <div class="badge badge-grant">
+                <span>🎁</span>
+                <span data-i18n="grant_badge">Startup Launchpad Program</span>
+              </div>
+              <h2>
+                <span data-i18n="grant_h2_1">100% Free AI Grant for</span>
+                <span class="gradient-grant-text" data-i18n="grant_h2_2">Newly Formed Businesses</span>
+              </h2>
+              <p data-i18n="grant_sub">
+                Are you a newly registered business or startup under 24 months old? Apply for our dedicated accelerator grant to deploy autonomous AI agents with zero upfront cost and full architecture support.
+              </p>
+            </div>
+
+            <div class="grant-columns">
+              <!-- Left: What You Get -->
+              <div class="grant-perks">
+                <h3 style="font-size: 1.25rem; margin-bottom: 1.5rem; color: #34d399;" data-i18n="perks_title">
+                  What Startups Receive (Total Value: $7,470+)
+                </h3>
+
+                <div class="grant-perk-item">
+                  <div class="perk-badge">🚀</div>
+                  <div class="perk-text">
+                    <h4 data-i18n="perk1_h">3 Months 100% Free Growth Tier</h4>
+                    <p data-i18n="perk1_p">Full access to 10 autonomous agents, up to 60,000 task executions/mo, and CRM/ERP integrations.</p>
+                  </div>
+                </div>
+
+                <div class="grant-perk-item">
+                  <div class="perk-badge">⚡</div>
+                  <div class="perk-text">
+                    <h4 data-i18n="perk2_h">$5,000 AI Token &amp; Compute Credits</h4>
+                    <p data-i18n="perk2_p">Covers all LLM reasoning tokens (Claude 3.7 / GPT-4o) and pgvector embeddings with zero out-of-pocket costs.</p>
+                  </div>
+                </div>
+
+                <div class="grant-perk-item">
+                  <div class="perk-badge">🛠️</div>
+                  <div class="perk-text">
+                    <h4 data-i18n="perk3_h">1-on-1 AI Solutions Architect Pairing</h4>
+                    <p data-i18n="perk3_p">Dedicated engineer helps build your tool-calling schemas and enterprise vector database in week one.</p>
+                  </div>
+                </div>
+
+                <div class="grant-perk-item">
+                  <div class="perk-badge">🛡️</div>
+                  <div class="perk-text">
+                    <h4 data-i18n="perk4_h">Zero Vendor Lock-in</h4>
+                    <p data-i18n="perk4_p">No credit card required upfront. Keep all data schemas and vector indexes even if you do not upgrade.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: Criteria for 100% Approval -->
+              <div class="criteria-box">
+                <div class="criteria-title">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span data-i18n="criteria_heading">Checklist to Get 100% Approved</span>
+                </div>
+
+                <ul class="criteria-list">
+                  <li>
+                    <span class="criteria-step">1</span>
+                    <div>
+                      <strong data-i18n="crit1_h">Business Under 24 Months Old:</strong>
+                      <span data-i18n="crit1_p">Must have a valid Tax ID / Business Registration Certificate (Mã số thuế / GPKD).</span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="criteria-step">2</span>
+                    <div>
+                      <strong data-i18n="crit2_h">Corporate Domain Email:</strong>
+                      <span data-i18n="crit2_p">Apply using a company domain email (e.g. name@yourbrand.com). Free @gmail/@yahoo domains are deprioritized.</span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="criteria-step">3</span>
+                    <div>
+                      <strong data-i18n="crit3_h">Active Website or Pitch Deck:</strong>
+                      <span data-i18n="crit3_p">Have a working website, landing page, or product deck showing your genuine business venture.</span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="criteria-step">4</span>
+                    <div>
+                      <strong data-i18n="crit4_h">Concrete Workflow Use-Case:</strong>
+                      <span data-i18n="crit4_p">Clearly define one task you want to automate (e.g. 24/7 customer support, invoice sync, or knowledge search).</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="grant-cta-row">
+              <button class="btn btn-grant" onclick="openGrantModal()" style="font-size: 1.05rem; padding: 0.95rem 2.25rem;">
+                <span data-i18n="grant_btn_apply">Apply for Free Startup Grant (24h Review)</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+              <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="grant_subtext">
+                ⚡ Fast-track review: 100% eligible applicants receive workspace activation within 24 business hours.
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Customer Testimonials -->
+      <section id="testimonials">
+        <div class="container">
+          <div class="section-header">
+            <div class="badge" data-i18n="badge_testimonials">Client Endorsements</div>
+            <h2 data-i18n="test_h2">What Engineering Leaders Say</h2>
+          </div>
+
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="testimonial-quote" data-i18n="test_quote_1">
+                "Canarius didn't just summarize incoming emails; it integrated with our core warehouse API to auto-route backordered parcels. We went from a 6-hour backlog to instant automated resolution."
+              </div>
+              <div class="testimonial-author">
+                <div class="author-avatar">AT</div>
+                <div class="author-info">
+                  <h4>Alex Tran</h4>
+                  <p>VP of Operations, LogiChain</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-quote" data-i18n="test_quote_2">
+                "The determinism and zero hallucination guardrails are unmatched. When handling financial queries, our agents never invent numbers—they execute verified SQL queries and cite the exact ledger entries."
+              </div>
+              <div class="testimonial-author">
+                <div class="author-avatar">SM</div>
+                <div class="author-info">
+                  <h4>Sarah Miller</h4>
+                  <p>Chief Technology Officer, FinScale</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-quote" data-i18n="test_quote_3">
+                "Setup took less than two weeks. Their team helped us map out custom tool calling schemas that replaced 70% of repetitive customer support triage overnight."
+              </div>
+              <div class="testimonial-author">
+                <div class="author-avatar">DN</div>
+                <div class="author-info">
+                  <h4>David Nguyen</h4>
+                  <p>Head of Product, NovaHealth</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section id="faq">
+        <div class="container">
+          <div class="section-header">
+            <div class="badge" data-i18n="badge_faq">Frequently Asked Questions</div>
+            <h2 data-i18n="faq_h2">Everything You Need to Know</h2>
+          </div>
+
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="faq-question">
+                <span data-i18n="faq_grant_q">How does a newly registered business get approved for the free Startup Grant?</span>
+                <span class="faq-icon">▼</span>
+              </div>
+              <div class="faq-answer" data-i18n="faq_grant_a">
+                To guarantee approval, submit your valid Tax ID (Mã số thuế) proving the business was registered within the last 24 months, apply using your company domain email (@yourcompany.com), provide a link to your website/landing page, and briefly describe your intended use case. Eligible startups are approved within 24 hours.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span data-i18n="faq1_q">How does Canarius guarantee AI agents won't hallucinate critical actions?</span>
+                <span class="faq-icon">▼</span>
+              </div>
+              <div class="faq-answer" data-i18n="faq1_a">
+                We combine structured output decoding with deterministic policy guardrails. Agents cannot trigger an external API tool unless all required parameters pass strict Pydantic/Zod schema validation and satisfy pre-configured business boundary constraints (such as maximum refund dollar limits).
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span data-i18n="faq2_q">Can Canarius be deployed within our private VPC or on-premise infrastructure?</span>
+                <span class="faq-icon">▼</span>
+              </div>
+              <div class="faq-answer" data-i18n="faq2_a">
+                Yes. For Enterprise tier clients, we offer Docker and Kubernetes Helm charts that deploy directly into your AWS, GCP, or Azure Virtual Private Cloud (VPC), ensuring your sensitive business data never leaves your perimeter.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span data-i18n="faq3_q">How do human staff supervise or intervene in agent workflows?</span>
+                <span class="faq-icon">▼</span>
+              </div>
+              <div class="faq-answer" data-i18n="faq3_a">
+                Canarius provides built-in Human-in-the-Loop (HITL) triggers. You can define confidence thresholds or specific sensitive operations (e.g. wire transfers or contracts over $10k) that pause execution and prompt a human manager for one-click Slack/Teams approval.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span data-i18n="faq4_q">How long does an initial pilot implementation take?</span>
+                <span class="faq-icon">▼</span>
+              </div>
+              <div class="faq-answer" data-i18n="faq4_a">
+                Most teams deploy their first operational agent within 5 to 10 business days using our turnkey connectors for Zendesk, Notion, PostgreSQL, and custom REST APIs.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
       <section id="about">
-        <div class="container card">
-          <h2>About</h2>
-          <p>
-            Canarius Tech was founded in 2026 with the goal of making practical AI agents
-            accessible to businesses. We focus on building reliable AI systems that move beyond
-            simple chatbots and perform useful work inside real business workflows.
-          </p>
+        <div class="container">
+          <div class="section-header">
+            <div class="badge" data-i18n="badge_about">About Us</div>
+            <h2 data-i18n="about_h2">Pioneering Useful, Autonomous Enterprise Intelligence</h2>
+            <p data-i18n="about_p">
+              Founded in 2026, Canarius Tech was created with a clear engineering mission: to bridge the gap between creative LLMs and mission-critical enterprise workflows. We believe true automation isn't about chat widgets—it's about reliable agents doing real work.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pre-footer CTA Banner -->
+      <section style="padding: 2rem 0 5rem">
+        <div class="container">
+          <div class="cta-banner">
+            <h2 data-i18n="cta_h2">Ready to Deploy Autonomous Agents in Your Business?</h2>
+            <p data-i18n="cta_p">
+              Schedule a 30-minute tailored architecture session with our AI engineers to see a customized workflow simulation on your company's real data.
+            </p>
+            <button class="btn btn-primary" onclick="openDemoModal()" style="font-size: 1.05rem; padding: 0.9rem 2rem;">
+              <span data-i18n="cta_btn">Book Architectural Consultation</span>
+            </button>
+          </div>
         </div>
       </section>
     </main>
 
+    <!-- Comprehensive Enterprise Footer -->
     <footer id="contact">
       <div class="container">
-        <h2>Contact</h2>
-        <p class="contact-links">
-          <span class="company-name">Canarius Tech</span><br />
-          Email: <a href="mailto:info@canarius.tech">info@canarius.tech</a><br />
-        </p>
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#" class="brand" style="margin-bottom: 0.5rem">
+              <div class="brand-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </div>
+              <span>Canarius<span style="color: #6366f1">.tech</span></span>
+            </a>
+            <p data-i18n="footer_desc">
+              Next-generation autonomous AI agents and orchestration platform for enterprise automation, customer support, and knowledge retrieval.
+            </p>
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              <span>All Systems Operational (99.98%)</span>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4 data-i18n="footer_col1">Solutions</h4>
+            <ul>
+              <li><a href="#solutions">Customer Support</a></li>
+              <li><a href="#solutions">Enterprise RAG</a></li>
+              <li><a href="#solutions">Tool Execution</a></li>
+              <li><a href="#solutions">Supply Chain AI</a></li>
+              <li><a href="#solutions">Multi-Agent Swarms</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 data-i18n="footer_col2">Platform</h4>
+            <ul>
+              <li><a href="#architecture">Architecture</a></li>
+              <li><a href="#technology">Model Flexibility</a></li>
+              <li><a href="#technology">SOC2 Security</a></li>
+              <li><a href="#roi">ROI Calculator</a></li>
+              <li><a href="#pricing">Pricing Plans</a></li>
+              <li><a href="#startup-grant" style="color: #34d399; font-weight: 600">★ Startup Grant</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 data-i18n="footer_col3">Company</h4>
+            <ul>
+              <li><a href="#about">About Canarius</a></li>
+              <li><a href="mailto:info@canarius.tech">info@canarius.tech</a></li>
+              <li><a href="#about">Careers</a></li>
+              <li><a href="#contact">Contact Support</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 data-i18n="footer_col4">Legal &amp; Privacy</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Security Whitepaper</a></li>
+              <li><a href="#">Data Protection (GDPR)</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>
+            &copy; 2026 Canarius Tech, Inc. All rights reserved.
+          </div>
+          <div>
+            Direct Inquiries: <a href="mailto:info@canarius.tech" style="color: #818cf8; font-weight: 600">info@canarius.tech</a>
+          </div>
+        </div>
       </div>
     </footer>
+
+    <!-- Interactive Book a Demo Modal -->
+    <div class="modal-backdrop" id="demoModal" onclick="handleBackdropClick(event)">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeDemoModal()">&times;</button>
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;" data-i18n="modal_title">Schedule a Customized Demo</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;" data-i18n="modal_sub">
+          Connect with an enterprise solutions architect to evaluate agent workflows for your business.
+        </p>
+
+        <form id="demoForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label data-i18n="form_name">Full Name *</label>
+            <input type="text" required class="form-control" id="formInputName" data-i18n-ph="ph_name" placeholder="Jane Doe" />
+          </div>
+
+          <div class="form-group">
+            <label data-i18n="form_email">Work Email *</label>
+            <input type="email" required class="form-control" id="formInputEmail" data-i18n-ph="ph_email" placeholder="jane@company.com" />
+          </div>
+
+          <div class="form-group">
+            <label data-i18n="form_company">Company &amp; Team Size *</label>
+            <input type="text" required class="form-control" id="formInputCompany" data-i18n-ph="ph_company" placeholder="Acme Corp (50-250 employees)" />
+          </div>
+
+          <div class="form-group">
+            <label data-i18n="form_usecase">Primary Use Case *</label>
+            <select class="form-control" required id="formSelectUsecase">
+              <option value="support">Customer Support &amp; Triage Automation</option>
+              <option value="rag">Internal Enterprise RAG &amp; Knowledge Search</option>
+              <option value="workflow">Order, Billing &amp; ERP Workflow Automation</option>
+              <option value="custom">Multi-Agent Custom Deployment</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;" data-i18n="form_submit">
+            Confirm Demo Request
+          </button>
+        </form>
+
+        <div id="formSuccess" style="display: none; text-align: center; padding: 1.5rem 0;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem">🎉</div>
+          <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: #34d399">Demo Request Received!</h4>
+          <p style="font-size: 0.9rem; color: var(--text-secondary)">
+            Our AI Solutions Architect will contact you at your work email within 2 business hours.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STARTUP GRANT APPLICATION MODAL -->
+    <div class="modal-backdrop" id="grantModal" onclick="handleGrantBackdropClick(event)">
+      <div class="modal-box grant-theme">
+        <button class="modal-close" onclick="closeGrantModal()">&times;</button>
+        <div class="badge badge-grant" style="margin-bottom: 0.75rem">
+          <span>🎁</span>
+          <span data-i18n="modal_grant_badge">100% Free Startup Accelerator Grant</span>
+        </div>
+        <h3 style="font-size: 1.45rem; margin-bottom: 0.4rem;" data-i18n="modal_grant_title">
+          Apply for Free New Business Grant
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.2rem;" data-i18n="modal_grant_sub">
+          Get 3 months free Growth tier ($7,470 value) + $5,000 AI compute credits. Reviewed within 24 business hours.
+        </p>
+
+        <div class="approval-tip-box">
+          <strong data-i18n="tip_box_title">💡 Pro-tip for 100% Approval:</strong>
+          <span data-i18n="tip_box_desc">Provide your exact Tax ID / Business Registration number and use a company domain email address (e.g. contact@yourbrand.com).</span>
+        </div>
+
+        <form id="grantForm" onsubmit="handleGrantSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label data-i18n="gform_cname">Company Legal Name *</label>
+              <input type="text" required class="form-control" data-i18n-ph="gph_cname" placeholder="Acme Tech Co., Ltd" />
+            </div>
+            <div class="form-group">
+              <label data-i18n="gform_taxid">Tax ID / Business Reg No. *</label>
+              <input type="text" required class="form-control" data-i18n-ph="gph_taxid" placeholder="031789XXXX or Tax Code" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label data-i18n="gform_founddate">Founded Date / Year *</label>
+              <input type="text" required class="form-control" data-i18n-ph="gph_founddate" placeholder="e.g. Nov 2025 (under 24 mos)" />
+            </div>
+            <div class="form-group">
+              <label data-i18n="gform_website">Website / Domain *</label>
+              <input type="text" required class="form-control" data-i18n-ph="gph_website" placeholder="https://yourcompany.com" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label data-i18n="gform_email">Corporate Work Email *</label>
+              <input type="email" required class="form-control" id="grantEmail" data-i18n-ph="gph_email" placeholder="founder@yourcompany.com" />
+            </div>
+            <div class="form-group">
+              <label data-i18n="gform_phone">Contact Phone / Zalo *</label>
+              <input type="tel" required class="form-control" data-i18n-ph="gph_phone" placeholder="+84 90 123 4567" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label data-i18n="gform_usecase">Primary AI Workflow to Automate *</label>
+            <select class="form-control" required>
+              <option value="support">24/7 Omnichannel Customer Support &amp; Ticket Triage</option>
+              <option value="rag">Internal Enterprise Knowledge Retrieval (RAG)</option>
+              <option value="erp">Supply Chain, Inventory &amp; Order Sync (Shopify/ERP)</option>
+              <option value="legal">Contract &amp; Document QA Review</option>
+              <option value="other">Custom Multi-Agent Workflow</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-grant" style="width: 100%; margin-top: 0.75rem;" data-i18n="gform_submit">
+            Submit Application for 24h Approval
+          </button>
+        </form>
+
+        <div id="grantSuccess" style="display: none; text-align: center; padding: 1.5rem 0;">
+          <div style="font-size: 2.8rem; margin-bottom: 0.5rem">🎉</div>
+          <h4 style="font-size: 1.35rem; margin-bottom: 0.5rem; color: #34d399" data-i18n="gsucc_title">Application Submitted!</h4>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;" data-i18n="gsucc_desc">
+            Your application reference ID is: <strong id="grantAppId" style="color: #6ee7b7; font-family: monospace">CANARIUS-GRANT-2026-X892</strong>.
+          </p>
+          <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="gsucc_notice">
+            Our startup review committee will verify your Tax ID and send workspace credentials to your corporate email within 24 business hours.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Scripts & Bilingual Data -->
+    <script>
+      // Bilingual Translation Dictionaries
+      const i18nData = {
+        en: {
+          nav_solutions: "Solutions",
+          nav_architecture: "Architecture",
+          nav_technology: "Technology",
+          nav_roi: "ROI Calculator",
+          nav_pricing: "Pricing",
+          nav_grant: "Startup Offer",
+          nav_about: "About",
+          btn_book_demo: "Book a Demo",
+          hero_badge: "Canarius Agent Orchestration 2.4 is Live",
+          hero_h1_1: "Autonomous AI Agents",
+          hero_h1_2: "Built for Real Enterprise Workflows",
+          hero_sub: "Move beyond basic chatbots. Canarius deploys enterprise-ready AI agents that reason through multi-step logic, tap company knowledge vaults, call internal APIs, and execute high-impact tasks with 99.9% reliability.",
+          hero_cta_primary: "Schedule Enterprise Demo",
+          hero_cta_grant: "Claim 100% Free Startup Grant",
+          hero_cta_secondary: "Watch Live Agent Trace",
+          trust_label: "ENGINEERED FOR SCALING ENTERPRISES & MISSION-CRITICAL TEAMS",
+          sim_sidebar_label: "Select Agent Scenario",
+          sim_controls_hint: "Simulating autonomous tool calling & guardrails check",
+          sim_replay_btn: "Re-run Simulation",
+          scen_tab_0: "🛡️ Customer Support & Refund",
+          scen_tab_1: "📦 Logistics & ERP Sync",
+          scen_tab_2: "📄 Legal Contract Compliance",
+          stat_1: "Faster Case & Ticket Resolution",
+          stat_2: "Execution Accuracy with Guardrails",
+          stat_3: "Reduction in Operational Service Costs",
+          stat_4: "Autonomous Continuous Execution",
+          badge_solutions: "Enterprise Solutions",
+          solutions_h2: "What Canarius Agents Execute",
+          solutions_p: "We design specialized multi-agent architectures that don't just generate text—they interact with your real software stack, execute validated actions, and deliver verified business outcomes.",
+          card1_title: "Omnichannel 24/7 Customer Support",
+          card1_desc: "Handle tier-1 and tier-2 customer support inquiries across Email, Slack, WhatsApp, and Web with contextual memory. Agents accurately interpret return policies, trigger partial refunds, modify order items, and seamlessly escalate edge cases to human reps.",
+          card2_title: "Enterprise Knowledge (RAG)",
+          card2_desc: "Connect scattered enterprise documentation across Notion, Google Drive, Jira, and PostgreSQL. Strict citation models ensure answers cite exact clauses without hallucinations.",
+          card3_title: "Automated Tool & API Calling",
+          card3_desc: "Our agents don't stop at conversation. They trigger authenticated REST/GraphQL endpoints, execute SQL queries against read-replicas, and run validated scripts.",
+          card4_title: "Order & Service Workflows",
+          card4_desc: "Automate supply chain queries, warranty claims, invoice discrepancies, and logistics status tracking across Shopify, SAP, and custom ERP systems.",
+          card5_title: "Multi-Agent Swarm Orchestration",
+          card5_desc: "Break complex corporate initiatives into specialized subagents: Planner, Researcher, Coder, and Verifier collaborating to execute multi-hour enterprise workflows.",
+          badge_arch: "Under the Hood",
+          arch_h2: "How Canarius Agents Execute Work",
+          arch_p: "A 5-layer deterministic pipeline engineered for enterprise safety, observability, and sub-second reasoning latency.",
+          stage1_title: "Ingestion & Intent",
+          stage1_desc: "Natural language incoming request is sanitized, classified, and mapped to business intent schemas.",
+          stage2_title: "Vector Retrieval",
+          stage2_desc: "Hybrid dense/sparse search pulls relevant enterprise policies and real-time database state.",
+          stage3_title: "Agent Reasoning",
+          stage3_desc: "Multi-step planner plans necessary actions, evaluating edge cases and security guardrails.",
+          stage4_title: "Authenticated Tool Call",
+          stage4_desc: "The agent triggers external APIs (Stripe, CRM, ERP) with structured JSON schemas and auth tokens.",
+          stage5_title: "Audit & Response",
+          stage5_desc: "Action outcome is validated against policy bounds, logged in telemetry, and summarized to user.",
+          badge_tech: "Enterprise Ready",
+          tech_h2: "Built with Modern AI Standards & Hardened Security",
+          tech_p: "We leverage best-in-class foundation models alongside private VPC isolation and deterministic governance.",
+          tech_models_title: "Foundation Model Agnostic",
+          tech_models_desc: "Deploy the right model for the right task. Canarius seamlessly orchestrates proprietary frontier models alongside open-weight LLMs hosted in your own VPC.",
+          tech_sec_title: "Enterprise Governance & Compliance",
+          tech_sec_desc: "Never compromise corporate IP or customer data. We implement zero-data retention agreements with model providers, complete SOC2 alignment, and strict RBAC.",
+          badge_roi: "Value Estimator",
+          roi_h2: "Calculate Your Operational ROI",
+          roi_p: "See how much time and budget autonomous Canarius agents can save your organization each month.",
+          roi_slider1_lbl: "Monthly Support Tickets / Manual Tasks:",
+          roi_slider2_lbl: "Current Cost Per Manual Resolution:",
+          roi_res_lbl: "Estimated Monthly Savings",
+          roi_btn: "Request Tailored Financial Report",
+          badge_pricing: "Pricing & Plans",
+          pricing_h2: "Transparent, Scalable Investment",
+          pricing_p: "Start with a focused pilot or roll out enterprise-wide agent orchestration.",
+          billing_monthly: "Monthly Billing",
+          billing_annual: "Annual Billing",
+          discount_tag: "Save 20%",
+          plan1_title: "Starter Pilot",
+          plan1_desc: "For teams validating autonomous AI in one department.",
+          plan1_btn: "Launch Pilot",
+          plan2_badge: "Most Popular",
+          plan2_title: "Growth Orchestrator",
+          plan2_desc: "For high-growth businesses scaling multi-channel ops.",
+          plan2_btn: "Get Started",
+          plan3_title: "Enterprise Custom",
+          plan3_desc: "For large companies requiring strict security & private VPC.",
+          plan3_btn: "Talk to Enterprise Team",
+          grant_badge: "Startup Launchpad Program",
+          grant_h2_1: "100% Free AI Grant for",
+          grant_h2_2: "Newly Formed Businesses",
+          grant_sub: "Are you a newly registered business or startup under 24 months old? Apply for our dedicated accelerator grant to deploy autonomous AI agents with zero upfront cost and full architecture support.",
+          perks_title: "What Startups Receive (Total Value: $7,470+)",
+          perk1_h: "3 Months 100% Free Growth Tier",
+          perk1_p: "Full access to 10 autonomous agents, up to 60,000 task executions/mo, and CRM/ERP integrations.",
+          perk2_h: "$5,000 AI Token & Compute Credits",
+          perk2_p: "Covers all LLM reasoning tokens (Claude 3.7 / GPT-4o) and pgvector embeddings with zero out-of-pocket costs.",
+          perk3_h: "1-on-1 AI Solutions Architect Pairing",
+          perk3_p: "Dedicated engineer helps build your tool-calling schemas and enterprise vector database in week one.",
+          perk4_h: "Zero Vendor Lock-in",
+          perk4_p: "No credit card required upfront. Keep all data schemas and vector indexes even if you do not upgrade.",
+          criteria_heading: "Checklist to Get 100% Approved",
+          crit1_h: "Business Under 24 Months Old:",
+          crit1_p: "Must have a valid Tax ID / Business Registration Certificate (Mã số thuế / GPKD).",
+          crit2_h: "Corporate Domain Email:",
+          crit2_p: "Apply using a company domain email (e.g. name@yourbrand.com). Free @gmail/@yahoo domains are deprioritized.",
+          crit3_h: "Active Website or Pitch Deck:",
+          crit3_p: "Have a working website, landing page, or product deck showing your genuine business venture.",
+          crit4_h: "Concrete Workflow Use-Case:",
+          crit4_p: "Clearly define one task you want to automate (e.g. 24/7 customer support, invoice sync, or knowledge search).",
+          grant_btn_apply: "Apply for Free Startup Grant (24h Review)",
+          grant_subtext: "⚡ Fast-track review: 100% eligible applicants receive workspace activation within 24 business hours.",
+          modal_grant_badge: "100% Free Startup Accelerator Grant",
+          modal_grant_title: "Apply for Free New Business Grant",
+          modal_grant_sub: "Get 3 months free Growth tier ($7,470 value) + $5,000 AI compute credits. Reviewed within 24 business hours.",
+          tip_box_title: "💡 Pro-tip for 100% Approval:",
+          tip_box_desc: "Provide your exact Tax ID / Business Registration number and use a company domain email address (e.g. contact@yourbrand.com).",
+          gform_cname: "Company Legal Name *",
+          gform_taxid: "Tax ID / Business Reg No. *",
+          gform_founddate: "Founded Date / Year *",
+          gform_website: "Website / Domain *",
+          gform_email: "Corporate Work Email *",
+          gform_phone: "Contact Phone / Zalo *",
+          gform_usecase: "Primary AI Workflow to Automate *",
+          gform_submit: "Submit Application for 24h Approval",
+          gsucc_title: "Application Submitted!",
+          gsucc_desc: "Your application reference ID is: CANARIUS-GRANT-2026-X892.",
+          gsucc_notice: "Our startup review committee will verify your Tax ID and send workspace credentials to your corporate email within 24 business hours.",
+          gph_cname: "Acme Tech Co., Ltd",
+          gph_taxid: "031789XXXX or Tax Code",
+          gph_founddate: "e.g. Nov 2025 (under 24 mos)",
+          gph_website: "https://yourcompany.com",
+          gph_email: "founder@yourcompany.com",
+          gph_phone: "+84 90 123 4567",
+          faq_grant_q: "How does a newly registered business get approved for the free Startup Grant?",
+          faq_grant_a: "To guarantee approval, submit your valid Tax ID (Mã số thuế) proving the business was registered within the last 24 months, apply using your company domain email (@yourcompany.com), provide a link to your website/landing page, and briefly describe your intended use case. Eligible startups are approved within 24 hours.",
+          badge_testimonials: "Client Endorsements",
+          test_h2: "What Engineering Leaders Say",
+          test_quote_1: "\"Canarius didn't just summarize incoming emails; it integrated with our core warehouse API to auto-route backordered parcels. We went from a 6-hour backlog to instant automated resolution.\"",
+          test_quote_2: "\"The determinism and zero hallucination guardrails are unmatched. When handling financial queries, our agents never invent numbers—they execute verified SQL queries and cite the exact ledger entries.\"",
+          test_quote_3: "\"Setup took less than two weeks. Their team helped us map out custom tool calling schemas that replaced 70% of repetitive customer support triage overnight.\"",
+          badge_faq: "Frequently Asked Questions",
+          faq_h2: "Everything You Need to Know",
+          faq1_q: "How does Canarius guarantee AI agents won't hallucinate critical actions?",
+          faq1_a: "We combine structured output decoding with deterministic policy guardrails. Agents cannot trigger an external API tool unless all required parameters pass strict Pydantic/Zod schema validation and satisfy pre-configured business boundary constraints.",
+          faq2_q: "Can Canarius be deployed within our private VPC or on-premise infrastructure?",
+          faq2_a: "Yes. For Enterprise tier clients, we offer Docker and Kubernetes Helm charts that deploy directly into your AWS, GCP, or Azure Virtual Private Cloud (VPC), ensuring your sensitive business data never leaves your perimeter.",
+          faq3_q: "How do human staff supervise or intervene in agent workflows?",
+          faq3_a: "Canarius provides built-in Human-in-the-Loop (HITL) triggers. You can define confidence thresholds or specific sensitive operations (e.g. wire transfers or contracts over $10k) that pause execution and prompt a human manager for one-click Slack/Teams approval.",
+          faq4_q: "How long does an initial pilot implementation take?",
+          faq4_a: "Most teams deploy their first operational agent within 5 to 10 business days using our turnkey connectors for Zendesk, Notion, PostgreSQL, and custom REST APIs.",
+          badge_about: "About Us",
+          about_h2: "Pioneering Useful, Autonomous Enterprise Intelligence",
+          about_p: "Founded in 2026, Canarius Tech was created with a clear engineering mission: to bridge the gap between creative LLMs and mission-critical enterprise workflows. We believe true automation isn't about chat widgets—it's about reliable agents doing real work.",
+          cta_h2: "Ready to Deploy Autonomous Agents in Your Business?",
+          cta_p: "Schedule a 30-minute tailored architecture session with our AI engineers to see a customized workflow simulation on your company's real data.",
+          cta_btn: "Book Architectural Consultation",
+          footer_desc: "Next-generation autonomous AI agents and orchestration platform for enterprise automation, customer support, and knowledge retrieval.",
+          footer_col1: "Solutions",
+          footer_col2: "Platform",
+          footer_col3: "Company",
+          footer_col4: "Legal & Privacy",
+          modal_title: "Schedule a Customized Demo",
+          modal_sub: "Connect with an enterprise solutions architect to evaluate agent workflows for your business.",
+          form_name: "Full Name *",
+          form_email: "Work Email *",
+          form_company: "Company & Team Size *",
+          form_usecase: "Primary Use Case *",
+          form_submit: "Confirm Demo Request",
+          ph_name: "Jane Doe",
+          ph_email: "jane@company.com",
+          ph_company: "Acme Corp (50-250 employees)"
+        },
+        vi: {
+          nav_solutions: "Giải pháp",
+          nav_architecture: "Kiến trúc",
+          nav_technology: "Công nghệ",
+          nav_roi: "Tính ROI",
+          nav_pricing: "Bảng giá",
+          nav_grant: "Ưu Đãi Khởi Nghiệp",
+          nav_about: "Về chúng tôi",
+          btn_book_demo: "Đặt Lịch Demo",
+          hero_badge: "Nền tảng Canarius Agent Orchestration 2.4 đã sẵn sàng",
+          hero_h1_1: "Đại Lý AI Tự Chủ",
+          hero_h1_2: "Xây Dựng Cho Quy Trình Doanh Nghiệp Thực Tế",
+          hero_sub: "Vượt xa các chatbot cơ bản. Canarius triển khai các AI Agent chuyên sâu sẵn sàng cho doanh nghiệp, có khả năng tư duy đa bước, tra cứu kho tri thức, gọi API nội bộ và hoàn thành công việc quan trọng với độ tin cậy 99.9%.",
+          hero_cta_primary: "Đăng Ký Demo Doanh Nghiệp",
+          hero_cta_grant: "Nhận Gói Tài Trợ 100% Miễn Phí",
+          hero_cta_secondary: "Xem Mô Phỏng AI Agent",
+          trust_label: "ĐƯỢC TIN DÙNG BỞI CÁC ĐỘI NGŨ CÔNG NGHỆ & TẬP ĐOÀN HÀNG ĐẦU",
+          sim_sidebar_label: "Chọn Kịch Bản AI Agent",
+          sim_controls_hint: "Đang mô phỏng tự động gọi công cụ & kiểm tra an toàn",
+          sim_replay_btn: "Chạy Lại Mô Phỏng",
+          scen_tab_0: "🛡️ Hỗ trợ khách hàng & Hoàn tiền",
+          scen_tab_1: "📦 Vận hành & Đồng bộ ERP",
+          scen_tab_2: "📄 Thẩm định Hợp đồng Pháp lý",
+          stat_1: "Tốc độ xử lý yêu cầu nhanh hơn 10x",
+          stat_2: "Độ chính xác với bộ lọc kiểm soát an toàn",
+          stat_3: "Tiết kiệm 65% chi phí dịch vụ vận hành",
+          stat_4: "Vận hành tự động liên tục 24/7/365",
+          badge_solutions: "Giải Pháp Doanh Nghiệp",
+          solutions_h2: "Các Nhiệm Vụ Canarius Agent Thực Thi",
+          solutions_p: "Chúng tôi thiết kế kiến trúc đa tác tử chuyên biệt không chỉ tạo văn bản đơn thuần—chúng tương tác với phần mềm nội bộ, thực thi hành động đã xác thực và mang lại kết quả kinh doanh rõ ràng.",
+          card1_title: "Hỗ Trợ Khách Hàng Đa Kênh 24/7",
+          card1_desc: "Giải quyết các yêu cầu hỗ trợ tier-1 và tier-2 trên Email, Slack, WhatsApp và Web với bộ nhớ ngữ cảnh. Agent hiểu chính sách hoàn trả, kích hoạt hoàn tiền một phần, sửa đơn hàng và chuyển tiếp mượt mà cho nhân viên khi cần.",
+          card2_title: "Truy Xuất Tri Thức Doanh Nghiệp (RAG)",
+          card2_desc: "Kết nối tài liệu phân tán trên Notion, Google Drive, Jira và PostgreSQL. Mô hình trích dẫn nghiêm ngặt đảm bảo câu trả lời luôn có nguồn chứng thực chính xác, triệt tiêu hoàn toàn ảo giác (hallucination).",
+          card3_title: "Tự Động Gọi Công Cụ & API",
+          card3_desc: "Agent không dừng lại ở cuộc trò chuyện. Chúng chủ động kích hoạt các endpoint REST/GraphQL có bảo mật, thực thi truy vấn SQL trên read-replica và chạy các quy trình đã kiểm duyệt.",
+          card4_title: "Tự Động Hóa Đơn Hàng & Vận Hành",
+          card4_desc: "Tự động xử lý thắc mắc chuỗi cung ứng, yêu cầu bảo hành, đối soát hóa đơn và theo dõi vận chuyển trên Shopify, SAP và hệ thống ERP riêng của doanh nghiệp.",
+          card5_title: "Điều Phối Đa Tác Tử (Multi-Agent Swarm)",
+          card5_desc: "Chia nhỏ dự án lớn thành các subagent chuyên trách: Lập kế hoạch (Planner), Nghiên cứu (Researcher), Thực thi (Coder) và Kiểm duyệt (Verifier) cùng phối hợp hoàn thành quy trình kéo dài nhiều giờ.",
+          badge_arch: "Bên Dưới Hệ Thống",
+          arch_h2: "Cách Canarius Agent Xử Lý Công Việc",
+          arch_p: "Quy trình xác định 5 tầng được tối ưu cho sự an toàn của doanh nghiệp, khả năng giám sát toàn diện và độ trễ dưới một giây.",
+          stage1_title: "Tiếp Nhận & Phân Tích Ý Định",
+          stage1_desc: "Yêu cầu ngôn ngữ tự nhiên được làm sạch, phân loại và ánh xạ vào cấu trúc ý định kinh doanh.",
+          stage2_title: "Truy Xuất Vector (RAG)",
+          stage2_desc: "Tìm kiếm ngữ nghĩa kết hợp trích xuất các điều khoản chính sách liên quan và trạng thái dữ liệu thời gian thực.",
+          stage3_title: "Lập Luận & Kiểm Soát An Toàn",
+          stage3_desc: "Module tư duy đa bước vạch ra các hành động cần thiết, đánh giá các tình huống ngoại lệ và quy chuẩn bảo mật.",
+          stage4_title: "Thực Thi Gọi Tool & API Bảo Mật",
+          stage4_desc: "Agent kích hoạt các API bên ngoài (Stripe, CRM, ERP) với schema JSON chuẩn hóa cùng token xác thực.",
+          stage5_title: "Kiểm Duyệt & Phản Hồi",
+          stage5_desc: "Kết quả hành động được đối soát với quy định nghiệp vụ, ghi nhận nhật ký hệ thống và tổng hợp phản hồi tới người dùng.",
+          badge_tech: "Sẵn Sàng Doanh Nghiệp",
+          tech_h2: "Chuẩn Mực AI Hiện Đại & Bảo Mật Chặt Chẽ",
+          tech_p: "Chúng tôi khai thác các mô hình nền tảng hàng đầu song song với kiến trúc cô lập VPC riêng và quản trị kiểm soát nghiêm ngặt.",
+          tech_models_title: "Tương Thích Mọi Mô Hình Nền Tảng",
+          tech_models_desc: "Triển khai đúng mô hình cho đúng công việc. Canarius dễ dàng phối hợp các frontier model thương mại cùng các LLM mã nguồn mở tự lưu trữ trong VPC riêng của bạn.",
+          tech_sec_title: "Quản Trị Doanh Nghiệp & Tuân Thủ Bảo Mật",
+          tech_sec_desc: "Tuyệt đối không xâm phạm tài sản trí tuệ hay dữ liệu khách hàng. Chúng tôi cam kết Zero-Data Retention với nhà cung cấp mô hình, tuân thủ SOC2 và kiểm soát quyền truy cập chi tiết (RBAC).",
+          badge_roi: "Ước Tính Giá Trị",
+          roi_h2: "Tính Toán Hiệu Quả Đầu Tư (ROI)",
+          roi_p: "Khám phá mức ngân sách và thời gian mà Canarius AI Agent có thể tiết kiệm cho doanh nghiệp bạn mỗi tháng.",
+          roi_slider1_lbl: "Lượng Ticket Hỗ Trợ / Tác Vụ Thủ Công Hàng Tháng:",
+          roi_slider2_lbl: "Chi Phí Xử Lý Thủ Công Cho Mỗi Ticket:",
+          roi_res_lbl: "Mức Tiết Kiệm Dự Kiến Mỗi Tháng",
+          roi_btn: "Nhận Báo Cáo Tài Chính Chi Tiết",
+          badge_pricing: "Bảng Giá Minh Bạch",
+          pricing_h2: "Khoản Đầu Tư Rõ Ràng, Linh Hoạt Mở Rộng",
+          pricing_p: "Bắt đầu với gói thử nghiệm có trọng tâm hoặc triển khai trên toàn bộ quy trình doanh nghiệp.",
+          billing_monthly: "Thanh Toán Theo Tháng",
+          billing_annual: "Thanh Toán Theo Năm",
+          discount_tag: "Tiết kiệm 20%",
+          plan1_title: "Gói Pilot Khởi Đầu",
+          plan1_desc: "Dành cho đội ngũ kiểm chứng AI tự chủ tại một phòng ban.",
+          plan1_btn: "Bắt Đầu Pilot",
+          plan2_badge: "Phổ Biến Nhất",
+          plan2_title: "Gói Growth Điều Phối",
+          plan2_desc: "Dành cho doanh nghiệp đang tăng trưởng muốn tự động hóa đa kênh.",
+          plan2_btn: "Bắt Đầu Ngay",
+          plan3_title: "Gói Enterprise Tùy Chỉnh",
+          plan3_desc: "Dành cho tập đoàn yêu cầu bảo mật khắt khe & hạ tầng VPC riêng.",
+          plan3_btn: "Trao Đổi Với Đội Ngũ Enterprise",
+          grant_badge: "Chương Trình Startup Launchpad",
+          grant_h2_1: "Tài Trợ AI 100% Miễn Phí Cho",
+          grant_h2_2: "Doanh Nghiệp Mới Thành Lập",
+          grant_sub: "Bạn là doanh nghiệp mới đăng ký kinh doanh hoặc startup dưới 24 tháng? Hãy nộp hồ sơ nhận gói tài trợ đặc biệt để triển khai hệ thống AI Agent với chi phí 0đ và nhận tư vấn kỹ thuật trực tiếp.",
+          perks_title: "Quyền Lợi Gói Tài Trợ (Tổng Trị Giá: $7,470+)",
+          perk1_h: "3 Tháng Miễn Phí Gói Growth 100%",
+          perk1_p: "Toàn quyền sử dụng 10 AI Agent tự chủ, 60.000 tác vụ/tháng và kết nối trực tiếp CRM/ERP.",
+          perk2_h: "$5,000 AI Token & Compute Credits",
+          perk2_p: "Chi trả toàn bộ token suy luận (Claude 3.7 / GPT-4o) và cơ sở dữ liệu vector pgvector, hoàn toàn không tốn phí phát sinh.",
+          perk3_h: "Kỹ Sư AI Hỗ Trợ Tích Hợp 1-on-1",
+          perk3_p: "Kỹ sư chuyên trách hỗ trợ ánh xạ API và khởi tạo kho tri thức nội bộ ngay trong tuần đầu tiên.",
+          perk4_h: "Không Ràng Buộc Thẻ Tín Dụng",
+          perk4_p: "Không yêu cầu nhập thẻ tín dụng. Doanh nghiệp giữ toàn bộ dữ liệu và cấu hình ngay cả khi không gia hạn.",
+          criteria_heading: "4 Điều Kiện Vàng Để Được Duyệt 100%",
+          crit1_h: "Doanh Nghiệp Dưới 24 Tháng:",
+          crit1_p: "Có Mã số thuế / Giấy phép ĐKKD hợp lệ chứng minh thời gian thành lập dưới 2 năm.",
+          crit2_h: "Sử Dụng Email Tên Miền Doanh Nghiệp:",
+          crit2_p: "Đăng ký bằng email có tên miền công ty (vd: contact@thuonghieu.vn). Email cá nhân @gmail/@yahoo sẽ bị xếp ưu tiên thấp.",
+          crit3_h: "Có Website Hoặc Bản Giới Thiệu (Pitch Deck):",
+          crit3_p: "Sở hữu website đang hoạt động hoặc landing page chứng minh dự án kinh doanh thực tế.",
+          crit4_h: "Mục Đích Ứng Dụng Rõ Ràng:",
+          crit4_p: "Mô tả ít nhất 1 bài toán thực tế cần AI Agent hỗ trợ (CSKH 24/7, tra cứu dữ liệu, hay tự động hóa đơn hàng).",
+          grant_btn_apply: "Nộp Đơn Nhận Tài Trợ Miễn Phí (Xét Duyệt 24h)",
+          grant_subtext: "⚡ Cam kết xét duyệt nhanh: 100% hồ sơ đáp ứng đủ tiêu chí sẽ được kích hoạt tài khoản trong vòng 24 giờ làm việc.",
+          modal_grant_badge: "Tài Trợ 100% Cho Doanh Nghiệp Mới",
+          modal_grant_title: "Nộp Đơn Nhận Gói Hỗ Trợ Doanh Nghiệp Mới",
+          modal_grant_sub: "Nhận 3 tháng miễn phí gói Growth ($7,470) + $5,000 credit AI. Xét duyệt và cấp tài khoản trong 24h làm việc.",
+          tip_box_title: "💡 Bí quyết để hồ sơ được duyệt 100%:",
+          tip_box_desc: "Nhập chính xác Mã số thuế (MST) và sử dụng Email theo tên miền công ty (ví dụ: contact@tencongty.com).",
+          gform_cname: "Tên Doanh Nghiệp (Pháp Nhân) *",
+          gform_taxid: "Mã Số Thuế (MST) / Giấy ĐKKD *",
+          gform_founddate: "Ngày / Năm Thành Lập *",
+          gform_website: "Website / Tên Miền Doanh Nghiệp *",
+          gform_email: "Email Công Ty (Tên Miền Doanh Nghiệp) *",
+          gform_phone: "Số Điện Thoại / Zalo Liên Hệ *",
+          gform_usecase: "Nhiệm Vụ Cần AI Agent Tự Động Hóa *",
+          gform_submit: "Gửi Hồ Sơ Xét Duyệt (Phản Hồi 24h)",
+          gsucc_title: "Hồ Sơ Đã Được Tiếp Nhận!",
+          gsucc_desc: "Mã hồ sơ xét duyệt của bạn là: CANARIUS-GRANT-2026-X892.",
+          gsucc_notice: "Hội đồng xét duyệt sẽ đối chiếu Mã số thuế và gửi thông tin kích hoạt tài khoản về email doanh nghiệp của bạn trong vòng 24 giờ làm việc.",
+          gph_cname: "Công ty TNHH Giải Pháp Công Nghệ Mới",
+          gph_taxid: "031789XXXX hoặc Mã số thuế",
+          gph_founddate: "vd: Tháng 10/2025 (dưới 24 tháng)",
+          gph_website: "https://tencongty.vn",
+          gph_email: "ceo@tencongty.vn",
+          gph_phone: "090 123 4567",
+          faq_grant_q: "Doanh nghiệp mới thành lập làm sao để chắc chắn được duyệt gói tài trợ miễn phí?",
+          faq_grant_a: "Để được duyệt 100%, bạn chỉ cần cung cấp Mã số thuế hợp lệ (< 24 tháng), đăng ký bằng email có tên miền công ty (@tencongty.com), dẫn link website hoặc landing page đang hoạt động, và nêu rõ quy trình muốn tự động hóa. Đơn hợp lệ sẽ được phê duyệt và kích hoạt tài khoản trong vòng 24 giờ.",
+          badge_testimonials: "Đánh Giá Khách Hàng",
+          test_h2: "Chia Sẻ Từ Các Trưởng Nhóm Kỹ Thuật",
+          test_quote_1: "\"Canarius không chỉ tóm tắt email; hệ thống tích hợp sâu vào API kho hàng để tự động điều phối đơn hàng thiếu hụt. Thời gian tồn đọng từ 6 tiếng giảm xuống tức thì.\"",
+          test_quote_2: "\"Cơ chế ngăn ngừa ảo giác và tính nhất quán cực kỳ vượt trội. Khi xử lý dữ liệu tài chính, agent không bao giờ tự bịa số liệu mà thực thi truy vấn SQL đã xác thực và trích xuất đúng sổ cái.\"",
+          test_quote_3: "\"Triển khai mất chưa đầy hai tuần. Đội ngũ Canarius giúp chúng tôi thiết lập sơ đồ gọi công cụ thay thế 70% các thao tác phân loại ticket hỗ trợ lặp đi lặp lại.\"",
+          badge_faq: "Câu Hỏi Thường Gặp",
+          faq_h2: "Mọi Điều Bạn Cần Biết",
+          faq1_q: "Canarius đảm bảo AI Agent không bị ảo giác (hallucination) trong các tác vụ quan trọng như thế nào?",
+          faq1_a: "Chúng tôi kết hợp giải mã đầu ra có cấu trúc (structured output) cùng các bộ lọc chính sách xác định. Agent không thể gọi API trừ khi mọi tham số đều vượt qua kiểm tra schema nghiêm ngặt và thỏa mãn hạn mức định trước (ví dụ: số tiền hoàn tối đa).",
+          faq2_q: "Canarius có thể triển khai trong hạ tầng VPC riêng hoặc On-Premise của chúng tôi không?",
+          faq2_a: "Hoàn toàn có thể. Với khách hàng Enterprise, chúng tôi cung cấp Docker và Kubernetes Helm chart triển khai trực tiếp vào AWS, GCP hoặc Azure VPC của bạn, đảm bảo dữ liệu nhạy cảm không bao giờ rời khỏi hạ tầng nội bộ.",
+          faq3_q: "Nhân viên con người giám sát hoặc can thiệp vào luồng của Agent ra sao?",
+          faq3_a: "Canarius tích hợp sẵn cơ chế Human-in-the-Loop (HITL). Bạn có thể đặt ngưỡng độ tin cậy hoặc thiết lập các hành động nhạy cảm (như duyệt chuyển khoản hay hợp đồng giá trị cao) để tạm dừng và xin phê duyệt qua Slack/Teams chỉ với 1 click.",
+          faq4_q: "Thời gian triển khai một đợt thử nghiệm ban đầu mất bao lâu?",
+          faq4_a: "Hầu hết các khách hàng đưa agent đầu tiên vào vận hành chỉ trong 5 đến 10 ngày làm việc nhờ các bộ kết nối có sẵn cho Zendesk, Notion, PostgreSQL và REST API.",
+          badge_about: "Về Canarius Tech",
+          about_h2: "Kiến Tạo Trí Tuệ Nhân Tạo Tự Chủ Hữu Ích Cho Doanh Nghiệp",
+          about_p: "Được thành lập vào năm 2026, Canarius Tech ra đời với sứ mệnh kỹ thuật rõ ràng: thu hẹp khoảng cách giữa các LLM tạo sinh và các quy trình vận hành cốt lõi của doanh nghiệp. Chúng tôi tin rằng tự động hóa đích thực không phải là khung chat—mà là các AI Agent đáng tin cậy thực hiện công việc cụ thể.",
+          cta_h2: "Sẵn Sàng Triển Khai AI Agent Tự Chủ Cho Doanh Nghiệp?",
+          cta_p: "Đặt lịch làm việc 30 phút cùng các kỹ sư giải pháp AI của chúng tôi để xem mô phỏng quy trình tùy chỉnh trên chính bài toán thực tế của công ty bạn.",
+          cta_btn: "Đặt Lịch Tư Vấn Kiến Trúc AI",
+          footer_desc: "Nền tảng điều phối và phát triển AI Agent tự chủ thế hệ mới cho tự động hóa quy trình doanh nghiệp, hỗ trợ khách hàng và tra cứu tri thức.",
+          footer_col1: "Giải Pháp",
+          footer_col2: "Nền Tảng",
+          footer_col3: "Công Ty",
+          footer_col4: "Pháp Lý & Bảo Mật",
+          modal_title: "Đặt Lịch Demo Tùy Chỉnh",
+          modal_sub: "Kết nối với kiến trúc sư giải pháp doanh nghiệp để đánh giá bài toán AI Agent cho tổ chức của bạn.",
+          form_name: "Họ và Tên *",
+          form_email: "Email Công Việc *",
+          form_company: "Tên Công Ty & Quy Mô *",
+          form_usecase: "Nhu Cầu Chính *",
+          form_submit: "Xác Nhận Đăng Ký Demo",
+          ph_name: "Nguyễn Văn A",
+          ph_email: "a.nguyen@congty.vn",
+          ph_company: "Công ty ABC (50-250 nhân sự)"
+        }
+      };
+
+      // Scenario Data in English and Vietnamese
+      const scenariosData = {
+        en: [
+          {
+            name: "Customer Support & Refund",
+            steps: [
+              {
+                icon: "📨",
+                title: "Inbound Customer Ticket Received",
+                meta: "Zendesk Webhook [Ticket #8841]",
+                desc: "Customer: 'Order #CN-9281 was damaged upon arrival. Requesting replacement or immediate $35 credit.'"
+              },
+              {
+                icon: "🧠",
+                title: "Intent Parsing & Policy Evaluation",
+                meta: "Agent Reasoning [latency: 180ms]",
+                desc: "Extracted: Action=Return/Credit, OrderID=CN-9281, ClaimedAmount=$35. Customer tier: Gold Member."
+              },
+              {
+                icon: "🔍",
+                title: "Enterprise Knowledge & Vector RAG",
+                meta: "pgvector Index [3 chunks retrieved]",
+                desc: "Retrieved Policy Clause 4.2: 'Instant credit allowed for Gold tier members up to $50 without photo inspection.'"
+              },
+              {
+                icon: "⚡",
+                title: "Tool Execution: Payment Gateway",
+                meta: "Stripe API [POST /v1/refunds]",
+                desc: "Payload: { order_id: 'CN-9281', amount_cents: 3500, reason: 'damaged_transit' } → Result: SUCCESS (tx_99812b)"
+              },
+              {
+                icon: "✅",
+                success: true,
+                title: "Audit Log & Ticket Resolution",
+                meta: "Zendesk API [Status: SOLVED]",
+                desc: "Generated empathetic customer notification with confirmation receipt and updated internal ERP ledger."
+              }
+            ]
+          },
+          {
+            name: "Logistics & ERP Sync",
+            steps: [
+              {
+                icon: "📦",
+                title: "Inventory Stock Level Anomaly",
+                meta: "SAP Event Bus [SKU-X882]",
+                desc: "Alert: Central warehouse inventory below safety buffer threshold (82 units remaining vs 200 min)."
+              },
+              {
+                icon: "🧠",
+                title: "Supplier Lead-Time Optimization",
+                meta: "Agent Multi-Factor Planning",
+                desc: "Analyzed 4 approved vendors. Supplier 'AlphaLogistics' provides lowest delivery delay (3 days, $12.40/unit)."
+              },
+              {
+                icon: "⚡",
+                title: "Tool Execution: PO Generation",
+                meta: "ERP GraphQL [createPurchaseOrder]",
+                desc: "Generated PO #PO-2026-991 for 500 units. Auto-signed with authorized procurement key."
+              },
+              {
+                icon: "✅",
+                success: true,
+                title: "Supplier Notification & Slack Broadcast",
+                meta: "Slack API [#ops-procurement]",
+                desc: "Dispatched signed PO via EDI 850 and posted summary telemetry card to Slack operations channel."
+              }
+            ]
+          },
+          {
+            name: "Legal Contract Compliance",
+            steps: [
+              {
+                icon: "📄",
+                title: "Vendor Agreement Ingested",
+                meta: "Google Drive Watcher [NDA_Vendor_v2.pdf]",
+                desc: "New 24-page Master Service Agreement submitted for legal review and compliance sign-off."
+              },
+              {
+                icon: "🔍",
+                title: "Clause Comparison against Standard Playbook",
+                meta: "Semantic Vector Diff",
+                desc: "Flagged Clause 14 (Indemnity): Unlimited liability exceeds company risk guidelines (standard cap: 2x contract value)."
+              },
+              {
+                icon: "⚡",
+                title: "Redline Revision Suggested",
+                meta: "DocuSign Redline API",
+                desc: "Generated counter-proposal clause with 2x fee cap and added standard mutual confidentiality provision."
+              },
+              {
+                icon: "✅",
+                success: true,
+                title: "Dispatched to General Counsel for Review",
+                meta: "Jira Legal Board [LEG-412]",
+                desc: "Ticket created with annotated redline markup diff and high-risk clause risk rating: Low."
+              }
+            ]
+          }
+        ],
+        vi: [
+          {
+            name: "Hỗ trợ khách hàng & Hoàn tiền",
+            steps: [
+              {
+                icon: "📨",
+                title: "Tiếp Nhận Ticket Khách Hàng",
+                meta: "Zendesk Webhook [Ticket #8841]",
+                desc: "Khách hàng: 'Đơn hàng #CN-9281 bị hư hỏng khi giao. Yêu cầu đổi sản phẩm hoặc hoàn 35$ vào tài khoản.'"
+              },
+              {
+                icon: "🧠",
+                title: "Phân Tích Ý Định & Đối Chiếu Chính Sách",
+                meta: "Suy luận Agent [độ trễ: 180ms]",
+                desc: "Trích xuất: Hành động=Hoàn tiền/Tín dụng, Mã đơn=CN-9281, Số tiền=35$. Hạng khách hàng: Thành viên Vàng."
+              },
+              {
+                icon: "🔍",
+                title: "Tra Cứu Tri Thức Doanh Nghiệp (RAG)",
+                meta: "Chỉ mục pgvector [3 đoạn trích xuất]",
+                desc: "Điều khoản chính sách 4.2: 'Cho phép hoàn tiền ngay lập tức cho thành viên Vàng tối đa 50$ mà không cần thẩm định ảnh lỗi.'"
+              },
+              {
+                icon: "⚡",
+                title: "Thực Thi Công Cụ: Cổng Thanh Toán",
+                meta: "Stripe API [POST /v1/refunds]",
+                desc: "Dữ liệu: { order_id: 'CN-9281', amount_cents: 3500, reason: 'damaged_transit' } → Kết quả: THÀNH CÔNG (tx_99812b)"
+              },
+              {
+                icon: "✅",
+                success: true,
+                title: "Ghi Log Kiểm Toán & Hoàn Tất Ticket",
+                meta: "Zendesk API [Trạng thái: ĐÃ XỬ LÝ]",
+                desc: "Tạo thông báo xác nhận lịch sự gửi khách hàng kèm biên nhận và đồng bộ cập nhật sổ cái ERP nội bộ."
+              }
+            ]
+          },
+          {
+            name: "Vận hành & Đồng bộ ERP",
+            steps: [
+              {
+                icon: "📦",
+                title: "Cảnh Báo Bất Thường Mức Tồn Kho",
+                meta: "SAP Event Bus [Mã SKU-X882]",
+                desc: "Cảnh báo: Lượng hàng tồn kho trung tâm giảm dưới ngưỡng đệm an toàn (còn 82 chiếc so với mức tối thiểu 200)."
+              },
+              {
+                icon: "🧠",
+                title: "Tối Ưu Thời Gian Cung Ứng Từ Nhà Cung Cấp",
+                meta: "Lập kế hoạch đa tiêu chí của Agent",
+                desc: "Phân tích 4 nhà cung cấp được duyệt. 'AlphaLogistics' có thời gian giao nhanh nhất (3 ngày, 12.40$/chiếc)."
+              },
+              {
+                icon: "⚡",
+                title: "Thực Thi Công Cụ: Khởi Tạo Đơn Mua Hàng",
+                meta: "ERP GraphQL [createPurchaseOrder]",
+                desc: "Khởi tạo PO #PO-2026-991 cho 500 đơn vị. Ký duyệt tự động bằng khóa procurement ủy quyền."
+              },
+              {
+                icon: "✅",
+                success: true,
+                title: "Báo Nhà Cung Cấp & Thông Báo Slack",
+                meta: "Slack API [#ops-procurement]",
+                desc: "Gửi PO đã ký qua chuẩn EDI 850 và phát thông báo tiến độ lên kênh vận hành nội bộ Slack."
+              }
+            ]
+          },
+          {
+            name: "Thẩm định Hợp đồng Pháp lý",
+            steps: [
+              {
+                icon: "📄",
+                title: "Tiếp Nhận Hợp Đồng Từ Đối Tác",
+                meta: "Google Drive Watcher [NDA_Vendor_v2.pdf]",
+                desc: "Thỏa thuận dịch vụ khung (MSA) 24 trang mới được nộp để phòng pháp chế thẩm định và ký kết."
+              },
+              {
+                icon: "🔍",
+                title: "Đối Chiếu Điều Khoản Với Bộ Quy Chuẩn",
+                meta: "So sánh Vector ngữ nghĩa",
+                desc: "Cảnh báo Điều khoản 14 (Bồi thường): Trách nhiệm vô hạn vượt quá hạn mức rủi ro công ty (hạn mức chuẩn: 2x giá trị hợp đồng)."
+              },
+              {
+                icon: "⚡",
+                title: "Đề Xuất Chỉnh Sửa (Redline)",
+                meta: "DocuSign Redline API",
+                desc: "Tạo đề xuất phản hồi với điều khoản giới hạn 2x chi phí hợp đồng và bổ sung nghĩa vụ bảo mật song phương tiêu chuẩn."
+              },
+              {
+                icon: "✅",
+                success: true,
+                title: "Chuyển Tiếp Tới Cố Vấn Pháp Lý Phê Duyệt",
+                meta: "Jira Legal Board [LEG-412]",
+                desc: "Tạo ticket Jira kèm bản đánh dấu so sánh sai khác (redline diff) và xếp hạng rủi ro điều khoản: Thấp."
+              }
+            ]
+          }
+        ]
+      };
+
+      let currentLang = 'en';
+      let currentScenarioIndex = 0;
+      let isAnnualBilling = false;
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        const dict = i18nData[lang];
+        document.documentElement.lang = lang;
+
+        // Update elements with data-i18n
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) {
+            el.textContent = dict[key];
+          }
+        });
+
+        // Update inputs with data-i18n-ph
+        document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+          const key = el.getAttribute('data-i18n-ph');
+          if (dict[key]) {
+            el.setAttribute('placeholder', dict[key]);
+          }
+        });
+
+        // Update scenario tab labels
+        document.getElementById('scenTab0').textContent = dict['scen_tab_0'];
+        document.getElementById('scenTab1').textContent = dict['scen_tab_1'];
+        document.getElementById('scenTab2').textContent = dict['scen_tab_2'];
+
+        // Update button
+        const flag = document.getElementById('langFlag');
+        const text = document.getElementById('langText');
+        if (lang === 'vi') {
+          flag.textContent = '🇬🇧';
+          text.textContent = 'EN';
+        } else {
+          flag.textContent = '🇻🇳';
+          text.textContent = 'VI';
+        }
+
+        // Re-render live simulator
+        renderCurrentScenario();
+      }
+
+      document.getElementById('langToggle').addEventListener('click', () => {
+        setLanguage(currentLang === 'en' ? 'vi' : 'en');
+      });
+
+      // Mobile Menu Toggle
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const navLinks = document.getElementById('navLinks');
+      mobileBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('mobile-open');
+      });
+
+      // Close mobile menu when link is clicked
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('mobile-open');
+        });
+      });
+
+      function switchScenario(index) {
+        currentScenarioIndex = index;
+        document.querySelectorAll('.agent-item').forEach((item, i) => {
+          item.classList.toggle('active', i === index);
+        });
+        runSimulation();
+      }
+
+      function renderCurrentScenario() {
+        const scenario = scenariosData[currentLang][currentScenarioIndex];
+        const container = document.getElementById('traceContainer');
+        container.innerHTML = '';
+
+        scenario.steps.forEach((step, i) => {
+          const stepDiv = document.createElement('div');
+          stepDiv.className = 'trace-step';
+          stepDiv.style.animationDelay = `${i * 0.15}s`;
+          stepDiv.innerHTML = `
+            <div class="step-icon ${step.success ? 'success' : ''}">${step.icon}</div>
+            <div class="step-content">
+              <div class="step-title">
+                <span>${step.title}</span>
+                <span class="step-meta">${step.meta}</span>
+              </div>
+              <div class="step-desc">${step.desc}</div>
+            </div>
+          `;
+          container.appendChild(stepDiv);
+        });
+      }
+
+      function runSimulation() {
+        const btn = document.getElementById('replayBtn');
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        renderCurrentScenario();
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.style.opacity = '1';
+        }, 800);
+      }
+
+      // Initial run
+      renderCurrentScenario();
+
+      // ROI Calculator Live Update
+      const ticketsSlider = document.getElementById('ticketsSlider');
+      const costSlider = document.getElementById('costSlider');
+      const ticketsDisplay = document.getElementById('ticketsDisplay');
+      const costDisplay = document.getElementById('costDisplay');
+      const savingsDisplay = document.getElementById('savingsDisplay');
+      const hoursDisplay = document.getElementById('hoursDisplay');
+
+      function updateROI() {
+        const tickets = parseInt(ticketsSlider.value, 10);
+        const cost = parseInt(costSlider.value, 10);
+
+        ticketsDisplay.textContent = tickets.toLocaleString();
+        costDisplay.textContent = `$${cost}`;
+
+        const automatedTickets = tickets * 0.70;
+        const currentCost = automatedTickets * cost;
+        const agentCost = automatedTickets * 0.50;
+        const savings = Math.round(currentCost - agentCost);
+        const hoursSaved = Math.round((automatedTickets * 12) / 60);
+
+        savingsDisplay.textContent = `$${savings.toLocaleString()}`;
+        if (currentLang === 'vi') {
+          hoursDisplay.textContent = `~${hoursSaved.toLocaleString()} giờ nhân sự tiết kiệm mỗi tháng`;
+        } else {
+          hoursDisplay.textContent = `~${hoursSaved.toLocaleString()} staff hours saved per month`;
+        }
+      }
+
+      ticketsSlider.addEventListener('input', updateROI);
+      costSlider.addEventListener('input', updateROI);
+      updateROI();
+
+      // Pricing Billing Period Toggle
+      function toggleBilling() {
+        setBilling(!isAnnualBilling);
+      }
+
+      function setBilling(annual) {
+        isAnnualBilling = annual;
+        const toggle = document.getElementById('billingToggle');
+        const lblMonthly = document.getElementById('labelMonthly');
+        const lblAnnual = document.getElementById('labelAnnual');
+        const starter = document.getElementById('priceStarter');
+        const growth = document.getElementById('priceGrowth');
+
+        toggle.classList.toggle('annual', isAnnualBilling);
+        lblMonthly.classList.toggle('active', !isAnnualBilling);
+        lblAnnual.classList.toggle('active', isAnnualBilling);
+
+        if (isAnnualBilling) {
+          starter.innerHTML = '$712 <span>/ mo (billed annually)</span>';
+          growth.innerHTML = '$1,990 <span>/ mo (billed annually)</span>';
+        } else {
+          starter.innerHTML = '$890 <span>/ mo</span>';
+          growth.innerHTML = '$2,490 <span>/ mo</span>';
+        }
+      }
+
+      // FAQ Accordion
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+          const item = q.parentElement;
+          const wasActive = item.classList.contains('active');
+          document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('active'));
+          if (!wasActive) {
+            item.classList.add('active');
+          }
+        });
+      });
+
+      // Modal Demo Functions
+      function openDemoModal() {
+        document.getElementById('demoModal').classList.add('open');
+      }
+
+      function closeDemoModal() {
+        document.getElementById('demoModal').classList.remove('open');
+      }
+
+      function handleBackdropClick(e) {
+        if (e.target.id === 'demoModal') {
+          closeDemoModal();
+        }
+      }
+
+      function handleFormSubmit(e) {
+        e.preventDefault();
+        document.getElementById('demoForm').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+        setTimeout(() => {
+          closeDemoModal();
+          setTimeout(() => {
+            document.getElementById('demoForm').reset();
+            document.getElementById('demoForm').style.display = 'block';
+            document.getElementById('formSuccess').style.display = 'none';
+          }, 400);
+        }, 3000);
+      }
+
+      // Startup Grant Modal Functions
+      function openGrantModal() {
+        document.getElementById('grantModal').classList.add('open');
+      }
+
+      function closeGrantModal() {
+        document.getElementById('grantModal').classList.remove('open');
+      }
+
+      function handleGrantBackdropClick(e) {
+        if (e.target.id === 'grantModal') {
+          closeGrantModal();
+        }
+      }
+
+      function handleGrantSubmit(e) {
+        e.preventDefault();
+        // Generate random reference code
+        const randomCode = 'CANARIUS-GRANT-' + Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('grantAppId').textContent = randomCode;
+
+        document.getElementById('grantForm').style.display = 'none';
+        document.getElementById('grantSuccess').style.display = 'block';
+        setTimeout(() => {
+          closeGrantModal();
+          setTimeout(() => {
+            document.getElementById('grantForm').reset();
+            document.getElementById('grantForm').style.display = 'block';
+            document.getElementById('grantSuccess').style.display = 'none';
+          }, 400);
+        }, 4500);
+      }
+    </script>
   </body>
 </html>
